@@ -13,7 +13,16 @@
 #import "AESUtil.h"
 #import "Tools.h"
 
+#define kService @"com.cardify.tinder"
+//#define kFilePath @"/var/mobile/Documents/new_config.json"
+//#define kAutoPath @"/var/mobile/Documents/auto_status.json"
+#define kFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"device_config.json"]
+#define kAutoPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"auto_status.json"]
 #define kService [[NSBundle mainBundle] bundleIdentifier]
+
+// API请求常量
+static NSString *const API_URL = @"https://hendiapp.org/app/pkg/getIOSMobdata";
+static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 
 @interface FloatingExtendVC ()<UIScrollViewDelegate>
 
@@ -26,6 +35,7 @@
 @property (nonatomic, strong) UITextField *textField1;
 @property (nonatomic, strong) UITextField *textField2;
 @property (nonatomic, strong) UILabel *tokenLab;
+@property (nonatomic, strong) UITextView *responseTextView;
 
 @property (nonatomic, assign) NSInteger tapCount;
 
@@ -443,6 +453,270 @@
     self.textField2.text = @(lat).stringValue;
 }
 
+#pragma mark - 请求设备信息
+//生成环境
+- (void)generateEnvironment1:(UIButton *)sender {
+    // 禁用按钮防止重复点击
+    sender.enabled = NO;
+    
+    // 显示加载指示器
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    activityIndicator.center = self.view.center;
+    [self.view addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
+    // 获取IDFV
+    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    if (!idfv) {
+        idfv = @"unknown";
+    }
+    
+    // 构建请求URL
+    NSString *urlString = [NSString stringWithFormat:@"http://43.156.136.235/index.php/index/index/getInfo?idfv=%@", idfv];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    // 创建请求
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    // 发起请求
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        // 回到主线程更新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
+            
+            if (error) {// 请求失败
+                // 写入失败状态
+                [self writeStatusFile:2];
+                self.responseTextView.text = [NSString stringWithFormat:@"请求失败: %@", error.localizedDescription];
+                // 显示错误提示
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"失败" message:@"请求服务器失败，请检查网络连接" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:done];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                // 请求成功，解析JSON并显示
+                NSError *jsonError;
+                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                
+                if (jsonError) {
+                    self.responseTextView.text = @"JSON解析失败";
+                     // 写入状态文件，状态码2表示失败
+                    [self writeStatusFile:2];
+                } else {
+                    // 保存JSON到文件
+                    [self saveJsonToFile:jsonDict];
+                    // 写入状态文件，状态码3表示成功
+                    [self writeStatusFile:3];
+                    
+                    // 显示在UI上
+                    NSData *prettyJsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:nil];
+                    NSString *jsonString = [[NSString alloc] initWithData:prettyJsonData encoding:NSUTF8StringEncoding];
+                    self.responseTextView.text = jsonString;
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"成功" message:@"环境已成功生成！\n重新打开应用" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self clearAction];
+                    }];
+                    [alert addAction:done];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }
+            
+            // 恢复按钮状态
+            sender.enabled = YES;
+        });
+    }] resume];
+}
+- (void)generateEnvironment:(UIButton *)sender {
+    // 显示加载指示器
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    activityIndicator.center = self.view.center;
+    [self.view addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
+    // 禁用按钮防止重复点击
+    sender.enabled = NO;
+    
+    // 获取IDFV
+    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    if (!idfv) {
+        idfv = @"unknown";
+    }
+    
+    // 创建POST请求
+    NSURL *url = [NSURL URLWithString:API_URL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.0];
+    
+    // 设置为POST请求
+    [request setHTTPMethod:@"POST"];
+    // 添加Authorization header
+    [request setValue:API_AUTH_KEY forHTTPHeaderField:@"Authorization"];
+    // 设置请求体 (idfv参数)
+    NSString *postString = [NSString stringWithFormat:@"idfv=%@", idfv];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    // 设置Content-Type
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // 发起请求
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        // 回到主线程更新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
+            
+            if (error) {
+                // 写入状态文件，状态码2表示失败
+                [self writeStatusFile:2];
+                // 请求失败
+                self.responseTextView.text = [NSString stringWithFormat:@"请求失败: %@", error.localizedDescription];
+                
+                // 显示错误提示
+                //UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"失败" message:@"请求服务器失败，请检查网络连接" preferredStyle:UIAlertControllerStyleAlert];
+                //UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                //[alert addAction:done];
+                //[self presentViewController:alert animated:YES completion:nil];
+            } else {
+                // 请求成功，解析JSON并显示
+                NSError *jsonError;
+                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                // 从响应中提取data字段
+                NSDictionary *dataDict = jsonDict[@"data"];
+                self.responseTextView.text = [NSString stringWithFormat:@"JSON解析:\n%@",dataDict?:@"失败"];
+                
+                if (jsonError || !dataDict) {
+                    [self writeStatusFile:2];
+                } else {
+                    [self saveJsonToFile:dataDict];
+                    [self writeStatusFile:3];
+                    // 6. 退出程序
+                    [self exitApplication];
+                    // 修改成功提示
+                    //UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"成功" message:@"环境已成功生成！\n重新打开应用" preferredStyle:UIAlertControllerStyleAlert];
+                    //UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                    //[alert addAction:done];
+                    //[self presentViewController:alert animated:YES completion:nil];
+                }
+            }
+            
+            // 恢复按钮状态
+            sender.enabled = YES;
+        });
+    }];
+    [task resume];
+}
+
+// 修改iOS版osv、revision的值
+- (NSMutableDictionary *)configJsonDict:(NSDictionary *)jsonDict{
+    NSMutableDictionary *mutableDict = [jsonDict mutableCopy];
+
+    // iOS 版本 → Darwin 版本（用于模拟 sysctl kern.osversion）
+    NSDictionary *osvToDarwin = @{
+        // iOS 16 系列
+        @"16.0.0": @"20A362", @"16.0.2": @"20A380", @"16.1.0": @"20B82",
+        @"16.1.1": @"20B101", @"16.1.2": @"20B110", @"16.2.0": @"20C65",
+        @"16.3.0": @"20D47", @"16.3.1": @"20D67", @"16.4.0": @"20E246",
+        @"16.4.1": @"20E252", @"16.5.0": @"20F66", @"16.5.1": @"20F75",
+        @"16.6.0": @"20G75", @"16.6.1": @"20G81", @"16.7.0": @"20H18",
+        @"16.7.1": @"20H30",
+
+        // iOS 17 系列
+        @"17.0.0": @"21A329", @"17.0.1": @"21A340", @"17.0.2": @"21A350",
+        @"17.0.3": @"21A360", @"17.1.0": @"21B74", @"17.1.1": @"21B91",
+        @"17.1.2": @"21B101", @"17.2.0": @"21C62", @"17.2.1": @"21C66",
+        @"17.3.0": @"21D50", @"17.3.1": @"21D61", @"17.4.0": @"21E217",
+        @"17.4.1": @"21E236", @"17.5.0": @"21F79", @"17.5.1": @"21F90",
+        @"17.6.0": @"21G80", @"17.6.1": @"21G92",
+
+        // iOS 18 系列（测试版）
+        @"18.0.0": @"24A344", @"18.1.0": @"24B74", @"18.2.0": @"24C152",
+        @"18.3.0": @"24D60", @"18.4.0": @"24E224", @"18.5.0": @"24F79",
+    };
+
+    // revision → model（内部硬件型号 → Apple 内部代号）
+    NSDictionary *revisionToModel = @{
+        @"iPhone10,3": @"D22AP",   // iPhone X
+        @"iPhone11,2": @"D321AP",  // iPhone XS
+        @"iPhone12,1": @"N104AP",  // iPhone 11
+        @"iPhone13,2": @"D53gAP",  // iPhone 12
+        @"iPhone14,5": @"D16AP",   // iPhone 13
+        @"iPhone15,4": @"D73AP",   // iPhone 14
+        @"iPhone16,2": @"D84AP",   // iPhone 15 Pro
+    };
+
+    // 随机取一组
+    NSArray *validRevisions = revisionToModel.allKeys;
+    NSArray *validOSVersions = osvToDarwin.allKeys;
+
+    NSString *randomOSV = validOSVersions[arc4random_uniform((uint32_t)validOSVersions.count)];
+    NSString *randomRevision = validRevisions[arc4random_uniform((uint32_t)validRevisions.count)];
+    NSString *randomDarwinVersion = osvToDarwin[randomOSV];
+    NSString *randomModel = revisionToModel[randomRevision];
+
+    // 写入字段
+    mutableDict[@"osv"] = randomOSV;
+    mutableDict[@"revision"] = randomRevision;
+    mutableDict[@"osversion"] = randomDarwinVersion;
+    mutableDict[@"model"] = randomModel;
+
+    NSLog(@"✅ 替换后 JSON: %@", mutableDict);
+    return mutableDict;
+}
+
+
+/// 将JSON数据保存到文件
+- (void)saveJsonToFile:(NSDictionary *)jsonDict {
+    jsonDict = [self configJsonDict:jsonDict];
+    
+    // 使用共享的目录路径，可被所有应用访问
+    NSString *filePath = kFilePath;
+    
+    // 将字典转换为JSON数据
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:nil];
+    // 写入文件
+    BOOL success = [jsonData writeToFile:filePath atomically:YES];
+    // 记录日志
+    NSLog(@"[INFO] 保存数据%@: %@", success ? @"成功" : @"失败", filePath);
+    // 记录关键数据字段，便于调试
+    if (success) {
+        NSLog(@"[DEBUG] 保存的OS版本: %@", jsonDict[@"os"]);
+        NSLog(@"[DEBUG] 保存的IDFV: %@", jsonDict[@"idfv"]);
+    }
+}
+
+/// 写入状态文件
+///@param status 状态码（3=成功，2=失败）
+- (void)writeStatusFile:(int)status {
+    // 获取当前时间戳
+    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+    // 创建JSON数据
+    NSDictionary *statusDict = @{
+        @"status": @(status),
+        @"time": @((long)timestamp)
+    };
+    
+    // 将字典转换为JSON数据
+    NSError *jsonError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:statusDict options:0 error:&jsonError];
+    if (jsonError) {
+        NSLog(@"[ERROR] 无法创建JSON数据: %@", jsonError);
+        return;
+    }
+    
+    // 转换为字符串
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    // 写入文件
+    NSString *filePath = kAutoPath;
+    NSError *writeError = nil;
+    [jsonString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&writeError];
+    if (writeError) {
+        NSLog(@"[ERROR] 无法写入状态文件: %@", writeError);
+    } else {
+        NSLog(@"[INFO] 成功写入JSON状态文件，状态: %d", status);
+    }
+}
+
+
 #pragma mark - action
 - (void)copyAction:(UIButton *)sender {
     UIPasteboard.generalPasteboard.string = self.tokenLab.text;
@@ -521,8 +795,10 @@
     // 4. 清空钥匙串
     [self clearKeychainExceptForAccounts:@[@"myDeviceID"]];
     
-    // 5. 退出程序
-    [self exitApplication];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 5.获取新设备信息
+        [self generateEnvironment:nil];
+    });
     NSLog(@"缓存已清除");
 }
 
@@ -793,6 +1069,21 @@
         _textField2 = tf;
     }
     return _textField2;
+}
+
+- (UITextView *)responseTextView{
+    if (!_responseTextView) {
+        UITextView *textV = [[UITextView alloc] init];
+        textV.translatesAutoresizingMaskIntoConstraints = NO;
+        textV.backgroundColor = [UIColor lightGrayColor];
+        textV.textColor = [UIColor blackColor];
+        textV.font = [UIFont systemFontOfSize:14];
+        textV.editable = NO;
+        textV.layer.cornerRadius = 8;
+        textV.text = @"请点击\"生成环境\"按钮获取数据...";
+        _responseTextView = textV;
+    }
+    return _responseTextView;
 }
 
 @end

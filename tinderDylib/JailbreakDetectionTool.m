@@ -25,8 +25,17 @@
     return isIn;
 }
 
-#pragma mark - 检测 DYLD_INSERT_LIBRARIES 环境变量
+// 打印当前加载的动态库列表
++ (void)printAllDylibs {
+    uint32_t count = _dyld_image_count();
+    NSLog(@"📦 当前加载的动态库列表：");
+    for (uint32_t i = 0; i < count; i++) {
+        const char *cname = _dyld_get_image_name(i);
+        NSLog(@"- %s", cname);
+    }
+}
 
+// 检测 DYLD_INSERT_LIBRARIES 环境变量
 + (BOOL)hasDYLDEnv {
     char *env = getenv("DYLD_INSERT_LIBRARIES");
     if (env != NULL) {
@@ -36,8 +45,7 @@
     return NO;
 }
 
-#pragma mark - 检测加载的动态库
-
+// 检测加载的动态库
 + (BOOL)hasSuspiciousDylibs {
     NSArray *suspiciousLibs = @[@"MobileSubstrate", @"SubstrateInserter", @"TweakInject", @"libhooker", @"CydiaSubstrate"];
     uint32_t count = _dyld_image_count();
@@ -56,17 +64,7 @@
     return NO;
 }
 
-+ (void)printAllDylibs {
-    uint32_t count = _dyld_image_count();
-    NSLog(@"📦 当前加载的动态库列表：");
-    for (uint32_t i = 0; i < count; i++) {
-        const char *cname = _dyld_get_image_name(i);
-        NSLog(@"- %s", cname);
-    }
-}
-
-#pragma mark - 检测异常类
-
+// 检测异常类
 + (BOOL)hasSuspiciousClass {
     int numClasses = objc_getClassList(NULL, 0);
     Class *classes = (Class *)malloc(sizeof(Class) * numClasses);
@@ -108,12 +106,10 @@
     if ([self hasJailbreakFiles]) return YES;
     if ([self canAccessOutsideSandbox]) return YES;
     if ([self hasSuspiciousDyldInject]) return YES;
-    if ([self hasCydiaInstalled]) return YES;
     return NO;
 }
 
-#pragma mark - 检查路径
-
+// 检查路径（是否检测到越狱文件）
 + (BOOL)hasJailbreakFiles {
     NSArray *jbPaths = @[
         @"/Applications/Cydia.app",
@@ -134,8 +130,7 @@
     return NO;
 }
 
-#pragma mark - 检查越权访问
-
+// 是否越权写文件
 + (BOOL)canAccessOutsideSandbox {
     NSError *error;
     NSString *testStr = @"test";
@@ -147,7 +142,7 @@
     return NO;
 }
 
-#pragma mark - 检查DYLD注入
+// 检查DYLD注入
 BOOL isTrustedPath(NSString *path) {
     return ([path hasPrefix:@"/System/Library/"] ||
             [path hasPrefix:@"/usr/lib/"] ||
@@ -156,6 +151,7 @@ BOOL isTrustedPath(NSString *path) {
             [path hasPrefix:@"/private/preboot/Cryptexes/OS/"]);
 }
 
+// 是否注入可疑动态库
 + (BOOL)hasSuspiciousDyldInject {
     uint32_t count = _dyld_image_count();
     
@@ -174,21 +170,10 @@ BOOL isTrustedPath(NSString *path) {
     return hasIn;
 }
 
-#pragma mark - 检查环境变量
-
-+ (BOOL)hasCydiaInstalled {
-    char *env = getenv("DYLD_INSERT_LIBRARIES");
-    if (env != NULL) {
-        return YES;
-    }
-    return NO;
-}
-
 + (void)logSuspiciousIndicators {
     NSLog(@"[JailbreakDetectionTool] 是否检测到越狱文件: %@", [self hasJailbreakFiles] ? @"✅ 是" : @"❌ 否");
     NSLog(@"[JailbreakDetectionTool] 是否越权写文件: %@", [self canAccessOutsideSandbox] ? @"✅ 是" : @"❌ 否");
     NSLog(@"[JailbreakDetectionTool] 是否注入可疑动态库: %@", [self hasSuspiciousDyldInject] ? @"✅ 是" : @"❌ 否");
-    NSLog(@"[JailbreakDetectionTool] 是否存在DYLD_INSERT_LIBRARIES: %@", [self hasCydiaInstalled] ? @"✅ 是" : @"❌ 否");
 }
 
 @end

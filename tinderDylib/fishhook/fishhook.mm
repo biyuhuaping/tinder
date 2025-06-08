@@ -39,6 +39,7 @@
 #import <Security/Security.h>
 #import <dlfcn.h>
 
+
 #ifdef __LP64__
 typedef struct mach_header_64 mach_header_t;
 typedef struct segment_command_64 segment_command_t;
@@ -167,9 +168,7 @@ static void perform_rebinding_with_section(struct rebindings_entry *rebindings,
   }
 }
 
-static void rebind_symbols_for_image(struct rebindings_entry *rebindings,
-                                     const struct mach_header *header,
-                                     intptr_t slide) {
+static void rebind_symbols_for_image(struct rebindings_entry *rebindings, const struct mach_header *header, intptr_t slide) {
   Dl_info info;
   if (dladdr(header, &info) == 0) {
     return;
@@ -233,10 +232,7 @@ static void _rebind_symbols_for_image(const struct mach_header *header, intptr_t
     rebind_symbols_for_image(_rebindings_head, header, slide);
 }
 
-int rebind_symbols_image(void *header,
-                         intptr_t slide,
-                         struct rebinding rebindings[],
-                         size_t rebindings_nel) {
+int rebind_symbols_image(void *header, intptr_t slide, struct rebinding rebindings[], size_t rebindings_nel) {
     struct rebindings_entry *rebindings_head = NULL;
     int retval = prepend_rebindings(&rebindings_head, rebindings, rebindings_nel);
     rebind_symbols_for_image(rebindings_head, (const struct mach_header *) header, slide);
@@ -266,7 +262,7 @@ int rebind_symbols(struct rebinding rebindings[], size_t rebindings_nel) {
 }
 
 
-
+#pragma mark -
 // 声明原始 SecItemDelete 函数指针
 static OSStatus (*orig_SecItemDelete)(CFDictionaryRef query);
 
@@ -293,3 +289,6 @@ static void initHook() {
         {"SecItemDelete", (void *)my_SecItemDelete, (void **)&orig_SecItemDelete}
     }, 1);
 }
+
+
+

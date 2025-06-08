@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		395EA4CE2DB62C69009B5BA4 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 395EA4CD2DB62C69009B5BA4 /* Tools.m */; };
 		395EA4CF2DB62C69009B5BA4 /* Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 395EA4CC2DB62C69009B5BA4 /* Tools.h */; };
+		399E7EF32DE0785600DAA51F /* Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 399E7EF22DE0785600DAA51F /* Header.h */; };
 		692AB07EF1ADBA4D1FCA26E7 /* Pods_tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE99307449C841F744945CE /* Pods_tinder.framework */; };
 		6971401C4D3D1FC09474AE72 /* Pods_tinderDylib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606089234F92874C3BA2024F /* Pods_tinderDylib.framework */; };
 		9E9D727C2DAA7D2A00227A27 /* JailbreakDetectionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D727B2DAA7D2A00227A27 /* JailbreakDetectionTool.m */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		395EA4CC2DB62C69009B5BA4 /* Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		395EA4CD2DB62C69009B5BA4 /* Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		399E7EF22DE0785600DAA51F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		474657ACCBE05F53F5F82FB4 /* Pods-tinderDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinderDylib.debug.xcconfig"; path = "Target Support Files/Pods-tinderDylib/Pods-tinderDylib.debug.xcconfig"; sourceTree = "<group>"; };
 		5A24B3F809B9CA505D6C0C86 /* Pods-tinderDylib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinderDylib.release.xcconfig"; path = "Target Support Files/Pods-tinderDylib/Pods-tinderDylib.release.xcconfig"; sourceTree = "<group>"; };
 		606089234F92874C3BA2024F /* Pods_tinderDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinderDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +250,7 @@
 				9EA50DFA2DA190C7003DFBA7 /* Toast.m */,
 				395EA4CC2DB62C69009B5BA4 /* Tools.h */,
 				395EA4CD2DB62C69009B5BA4 /* Tools.m */,
+				399E7EF22DE0785600DAA51F /* Header.h */,
 				9EA50DFB2DA190C7003DFBA7 /* FloatingExtendVC.h */,
 				9EA50DFC2DA190C7003DFBA7 /* FloatingExtendVC.m */,
 				9E9D72942DAAD84B00227A27 /* FloatingWindow.h */,
@@ -356,6 +359,7 @@
 				9EA50DFD2DA190C7003DFBA7 /* FloatingExtendVC.h in Headers */,
 				9E9D72972DAAD84B00227A27 /* FloatingWindow.h in Headers */,
 				395EA4CF2DB62C69009B5BA4 /* Tools.h in Headers */,
+				399E7EF32DE0785600DAA51F /* Header.h in Headers */,
 				9E9D73762DB4FF3400227A27 /* AESUtil.h in Headers */,
 				9E9D727D2DAA7D2A00227A27 /* JailbreakDetectionTool.h in Headers */,
 				9EA50DFE2DA190C7003DFBA7 /* Toast.h in Headers */,

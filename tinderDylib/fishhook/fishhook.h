@@ -26,6 +26,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#import <sys/utsname.h>
 
 #if !defined(FISHHOOK_EXPORT)
 #define FISHHOOK_VISIBILITY __attribute__((visibility("hidden")))

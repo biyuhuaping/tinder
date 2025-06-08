@@ -20,8 +20,8 @@ target 'tinderDylib' do
 #  pod 'DoraemonKit/WithMLeaksFinder', '3.0.4', :configurations => ['Debug'] #可选
 #  pod 'FLEX'
   pod 'AFNetworking'
-  pod 'LookinServer'#, :configurations => ['Debug']
-#  pod 'MJExtension'
+#  pod 'LookinServer', :configurations => ['Debug']
+  pod 'NetworkInterceptor'
   pod 'Masonry'
 
   pod 'Protobuf', '3.17.0'
