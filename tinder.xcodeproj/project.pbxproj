@@ -1,0 +1,931 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		395EA4CE2DB62C69009B5BA4 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 395EA4CD2DB62C69009B5BA4 /* Tools.m */; };
+		395EA4CF2DB62C69009B5BA4 /* Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 395EA4CC2DB62C69009B5BA4 /* Tools.h */; };
+		692AB07EF1ADBA4D1FCA26E7 /* Pods_tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE99307449C841F744945CE /* Pods_tinder.framework */; };
+		6971401C4D3D1FC09474AE72 /* Pods_tinderDylib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606089234F92874C3BA2024F /* Pods_tinderDylib.framework */; };
+		9E9D727C2DAA7D2A00227A27 /* JailbreakDetectionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D727B2DAA7D2A00227A27 /* JailbreakDetectionTool.m */; };
+		9E9D727D2DAA7D2A00227A27 /* JailbreakDetectionTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9D727A2DAA7D2A00227A27 /* JailbreakDetectionTool.h */; };
+		9E9D72962DAAD84B00227A27 /* FloatingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D72952DAAD84B00227A27 /* FloatingWindow.m */; };
+		9E9D72972DAAD84B00227A27 /* FloatingWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9D72942DAAD84B00227A27 /* FloatingWindow.h */; };
+		9E9D73612DB4FD1A00227A27 /* ZBNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D735F2DB4FD1A00227A27 /* ZBNetwork.m */; };
+		9E9D73622DB4FD1A00227A27 /* ZBNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9D735E2DB4FD1A00227A27 /* ZBNetwork.h */; };
+		9E9D73762DB4FF3400227A27 /* AESUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9D73732DB4FF3300227A27 /* AESUtil.h */; };
+		9E9D73772DB4FF3400227A27 /* AESUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D73742DB4FF3300227A27 /* AESUtil.m */; };
+		9EA50DA92DA19054003DFBA7 /* libtinderDylib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9EA50DA82DA19054003DFBA7 /* libtinderDylib.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9EA50DAE2DA19054003DFBA7 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA50DAD2DA19054003DFBA7 /* JavaScriptCore.framework */; };
+		9EA50DB02DA19054003DFBA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA50DAF2DA19054003DFBA7 /* Foundation.framework */; };
+		9EA50DB22DA19054003DFBA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA50DB12DA19054003DFBA7 /* UIKit.framework */; };
+		9EA50DB72DA19054003DFBA7 /* tinderDylib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DB62DA19054003DFBA7 /* tinderDylib.mm */; };
+		9EA50DBA2DA19054003DFBA7 /* MDConfigManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DB92DA19054003DFBA7 /* MDConfigManager.h */; };
+		9EA50DBC2DA19054003DFBA7 /* MDConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DBB2DA19054003DFBA7 /* MDConfigManager.m */; };
+		9EA50DBE2DA19054003DFBA7 /* MDCycriptManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DBD2DA19054003DFBA7 /* MDCycriptManager.h */; };
+		9EA50DC02DA19054003DFBA7 /* MDCycriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DBF2DA19054003DFBA7 /* MDCycriptManager.m */; };
+		9EA50DC22DA19054003DFBA7 /* MDMethodTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DC12DA19054003DFBA7 /* MDMethodTrace.h */; };
+		9EA50DC42DA19054003DFBA7 /* MDMethodTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DC32DA19054003DFBA7 /* MDMethodTrace.m */; };
+		9EA50DC72DA19054003DFBA7 /* a1a2-selectortramps-arm.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DC62DA19054003DFBA7 /* a1a2-selectortramps-arm.s */; };
+		9EA50DC92DA19054003DFBA7 /* a1a2-selectortramps-arm64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DC82DA19054003DFBA7 /* a1a2-selectortramps-arm64.s */; };
+		9EA50DCB2DA19054003DFBA7 /* a1a2-selectortramps-i386.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DCA2DA19054003DFBA7 /* a1a2-selectortramps-i386.s */; };
+		9EA50DCD2DA19054003DFBA7 /* a1a2-selectortramps-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DCC2DA19054003DFBA7 /* a1a2-selectortramps-x86_64.s */; };
+		9EA50DCF2DA19054003DFBA7 /* a2a3-selectortramps-arm.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DCE2DA19054003DFBA7 /* a2a3-selectortramps-arm.s */; };
+		9EA50DD12DA19054003DFBA7 /* a2a3-selectortramps-i386.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DD02DA19054003DFBA7 /* a2a3-selectortramps-i386.s */; };
+		9EA50DD32DA19054003DFBA7 /* a2a3-selectortramps-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DD22DA19054003DFBA7 /* a2a3-selectortramps-x86_64.s */; };
+		9EA50DD52DA19054003DFBA7 /* OCMethodTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DD42DA19054003DFBA7 /* OCMethodTrace.h */; };
+		9EA50DD72DA19054003DFBA7 /* OCMethodTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DD62DA19054003DFBA7 /* OCMethodTrace.m */; };
+		9EA50DD92DA19054003DFBA7 /* OCSelectorTrampolines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DD82DA19054003DFBA7 /* OCSelectorTrampolines.h */; };
+		9EA50DDB2DA19054003DFBA7 /* OCSelectorTrampolines.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DDA2DA19054003DFBA7 /* OCSelectorTrampolines.mm */; };
+		9EA50DDF2DA19054003DFBA7 /* LLDBTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DDE2DA19054003DFBA7 /* LLDBTools.h */; };
+		9EA50DE12DA19054003DFBA7 /* LLDBTools.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DE02DA19054003DFBA7 /* LLDBTools.mm */; };
+		9EA50DE62DA19054003DFBA7 /* AntiAntiDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DE52DA19054003DFBA7 /* AntiAntiDebug.m */; };
+		9EA50DE92DA19054003DFBA7 /* fishhook.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DE82DA19054003DFBA7 /* fishhook.mm */; };
+		9EA50DEB2DA19054003DFBA7 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DEA2DA19054003DFBA7 /* fishhook.h */; };
+		9EA50DED2DA19054003DFBA7 /* tinderDylib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DEC2DA19054003DFBA7 /* tinderDylib.h */; };
+		9EA50DEF2DA19054003DFBA7 /* tinderDylib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DEE2DA19054003DFBA7 /* tinderDylib.m */; };
+		9EA50DFD2DA190C7003DFBA7 /* FloatingExtendVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DFB2DA190C7003DFBA7 /* FloatingExtendVC.h */; };
+		9EA50DFE2DA190C7003DFBA7 /* Toast.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EA50DF92DA190C7003DFBA7 /* Toast.h */; };
+		9EA50DFF2DA190C7003DFBA7 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DFA2DA190C7003DFBA7 /* Toast.m */; };
+		9EA50E002DA190C7003DFBA7 /* FloatingExtendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA50DFC2DA190C7003DFBA7 /* FloatingExtendVC.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9EA50DAA2DA19054003DFBA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9EA50D8C2DA19054003DFBA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9EA50DA72DA19054003DFBA7;
+			remoteInfo = tinderDylib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9EA50D942DA19054003DFBA7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9EA50DA92DA19054003DFBA7 /* libtinderDylib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		395EA4CC2DB62C69009B5BA4 /* Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		395EA4CD2DB62C69009B5BA4 /* Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		474657ACCBE05F53F5F82FB4 /* Pods-tinderDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinderDylib.debug.xcconfig"; path = "Target Support Files/Pods-tinderDylib/Pods-tinderDylib.debug.xcconfig"; sourceTree = "<group>"; };
+		5A24B3F809B9CA505D6C0C86 /* Pods-tinderDylib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinderDylib.release.xcconfig"; path = "Target Support Files/Pods-tinderDylib/Pods-tinderDylib.release.xcconfig"; sourceTree = "<group>"; };
+		606089234F92874C3BA2024F /* Pods_tinderDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinderDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EE99307449C841F744945CE /* Pods_tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9D727A2DAA7D2A00227A27 /* JailbreakDetectionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JailbreakDetectionTool.h; sourceTree = "<group>"; };
+		9E9D727B2DAA7D2A00227A27 /* JailbreakDetectionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JailbreakDetectionTool.m; sourceTree = "<group>"; };
+		9E9D72942DAAD84B00227A27 /* FloatingWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatingWindow.h; sourceTree = "<group>"; };
+		9E9D72952DAAD84B00227A27 /* FloatingWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloatingWindow.m; sourceTree = "<group>"; };
+		9E9D735E2DB4FD1A00227A27 /* ZBNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBNetwork.h; sourceTree = "<group>"; };
+		9E9D735F2DB4FD1A00227A27 /* ZBNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBNetwork.m; sourceTree = "<group>"; };
+		9E9D73732DB4FF3300227A27 /* AESUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AESUtil.h; sourceTree = "<group>"; };
+		9E9D73742DB4FF3300227A27 /* AESUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AESUtil.m; sourceTree = "<group>"; };
+		9EA50D972DA19054003DFBA7 /* tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EA50DA82DA19054003DFBA7 /* libtinderDylib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libtinderDylib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EA50DAD2DA19054003DFBA7 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		9EA50DAF2DA19054003DFBA7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9EA50DB12DA19054003DFBA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9EA50DB52DA19054003DFBA7 /* tinderDylib.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; path = tinderDylib.xm; sourceTree = "<group>"; };
+		9EA50DB62DA19054003DFBA7 /* tinderDylib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tinderDylib.mm; sourceTree = "<group>"; };
+		9EA50DB92DA19054003DFBA7 /* MDConfigManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDConfigManager.h; sourceTree = "<group>"; };
+		9EA50DBB2DA19054003DFBA7 /* MDConfigManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDConfigManager.m; sourceTree = "<group>"; };
+		9EA50DBD2DA19054003DFBA7 /* MDCycriptManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDCycriptManager.h; sourceTree = "<group>"; };
+		9EA50DBF2DA19054003DFBA7 /* MDCycriptManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDCycriptManager.m; sourceTree = "<group>"; };
+		9EA50DC12DA19054003DFBA7 /* MDMethodTrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDMethodTrace.h; sourceTree = "<group>"; };
+		9EA50DC32DA19054003DFBA7 /* MDMethodTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDMethodTrace.m; sourceTree = "<group>"; };
+		9EA50DC62DA19054003DFBA7 /* a1a2-selectortramps-arm.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a1a2-selectortramps-arm.s"; sourceTree = "<group>"; };
+		9EA50DC82DA19054003DFBA7 /* a1a2-selectortramps-arm64.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a1a2-selectortramps-arm64.s"; sourceTree = "<group>"; };
+		9EA50DCA2DA19054003DFBA7 /* a1a2-selectortramps-i386.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a1a2-selectortramps-i386.s"; sourceTree = "<group>"; };
+		9EA50DCC2DA19054003DFBA7 /* a1a2-selectortramps-x86_64.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a1a2-selectortramps-x86_64.s"; sourceTree = "<group>"; };
+		9EA50DCE2DA19054003DFBA7 /* a2a3-selectortramps-arm.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a2a3-selectortramps-arm.s"; sourceTree = "<group>"; };
+		9EA50DD02DA19054003DFBA7 /* a2a3-selectortramps-i386.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a2a3-selectortramps-i386.s"; sourceTree = "<group>"; };
+		9EA50DD22DA19054003DFBA7 /* a2a3-selectortramps-x86_64.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = "a2a3-selectortramps-x86_64.s"; sourceTree = "<group>"; };
+		9EA50DD42DA19054003DFBA7 /* OCMethodTrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMethodTrace.h; sourceTree = "<group>"; };
+		9EA50DD62DA19054003DFBA7 /* OCMethodTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCMethodTrace.m; sourceTree = "<group>"; };
+		9EA50DD82DA19054003DFBA7 /* OCSelectorTrampolines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCSelectorTrampolines.h; sourceTree = "<group>"; };
+		9EA50DDA2DA19054003DFBA7 /* OCSelectorTrampolines.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OCSelectorTrampolines.mm; sourceTree = "<group>"; };
+		9EA50DDC2DA19054003DFBA7 /* selectortramps.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = selectortramps.mac; sourceTree = "<group>"; };
+		9EA50DDE2DA19054003DFBA7 /* LLDBTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDBTools.h; sourceTree = "<group>"; };
+		9EA50DE02DA19054003DFBA7 /* LLDBTools.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LLDBTools.mm; sourceTree = "<group>"; };
+		9EA50DE32DA19054003DFBA7 /* tinderDylib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tinderDylib-Prefix.pch"; path = "../tinderDylib-Prefix.pch"; sourceTree = "<group>"; };
+		9EA50DE52DA19054003DFBA7 /* AntiAntiDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AntiAntiDebug.m; sourceTree = "<group>"; };
+		9EA50DE82DA19054003DFBA7 /* fishhook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = fishhook.mm; sourceTree = "<group>"; };
+		9EA50DEA2DA19054003DFBA7 /* fishhook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		9EA50DEC2DA19054003DFBA7 /* tinderDylib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tinderDylib.h; sourceTree = "<group>"; };
+		9EA50DEE2DA19054003DFBA7 /* tinderDylib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tinderDylib.m; sourceTree = "<group>"; };
+		9EA50DF92DA190C7003DFBA7 /* Toast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		9EA50DFA2DA190C7003DFBA7 /* Toast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
+		9EA50DFB2DA190C7003DFBA7 /* FloatingExtendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatingExtendVC.h; sourceTree = "<group>"; };
+		9EA50DFC2DA190C7003DFBA7 /* FloatingExtendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloatingExtendVC.m; sourceTree = "<group>"; };
+		A35621CAA96270B1A1B5564D /* Pods-tinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinder.debug.xcconfig"; path = "Target Support Files/Pods-tinder/Pods-tinder.debug.xcconfig"; sourceTree = "<group>"; };
+		A3B7F665915D29D9B64FD2A7 /* Pods-tinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinder.release.xcconfig"; path = "Target Support Files/Pods-tinder/Pods-tinder.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		9EA50DF02DA19054003DFBA7 /* Exceptions for "tinder" folder in "tinder" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				"TargetApp/put ipa or app here",
+			);
+			target = 9EA50D962DA19054003DFBA7 /* tinder */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9EA50D992DA19054003DFBA7 /* tinder */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				9EA50DF02DA19054003DFBA7 /* Exceptions for "tinder" folder in "tinder" target */,
+			);
+			path = tinder;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9EA50D912DA19054003DFBA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				692AB07EF1ADBA4D1FCA26E7 /* Pods_tinder.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EA50DA52DA19054003DFBA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EA50DAE2DA19054003DFBA7 /* JavaScriptCore.framework in Frameworks */,
+				9EA50DB22DA19054003DFBA7 /* UIKit.framework in Frameworks */,
+				9EA50DB02DA19054003DFBA7 /* Foundation.framework in Frameworks */,
+				6971401C4D3D1FC09474AE72 /* Pods_tinderDylib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		196967143EB3519AF1B69BD3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A35621CAA96270B1A1B5564D /* Pods-tinder.debug.xcconfig */,
+				A3B7F665915D29D9B64FD2A7 /* Pods-tinder.release.xcconfig */,
+				474657ACCBE05F53F5F82FB4 /* Pods-tinderDylib.debug.xcconfig */,
+				5A24B3F809B9CA505D6C0C86 /* Pods-tinderDylib.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9E9D73602DB4FD1A00227A27 /* ZBNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				9E9D735E2DB4FD1A00227A27 /* ZBNetwork.h */,
+				9E9D735F2DB4FD1A00227A27 /* ZBNetwork.m */,
+			);
+			path = ZBNetwork;
+			sourceTree = "<group>";
+		};
+		9E9D73752DB4FF3300227A27 /* AESUtil */ = {
+			isa = PBXGroup;
+			children = (
+				9E9D73732DB4FF3300227A27 /* AESUtil.h */,
+				9E9D73742DB4FF3300227A27 /* AESUtil.m */,
+			);
+			path = AESUtil;
+			sourceTree = "<group>";
+		};
+		9EA50D8B2DA19054003DFBA7 = {
+			isa = PBXGroup;
+			children = (
+				9EA50D992DA19054003DFBA7 /* tinder */,
+				9EA50DB32DA19054003DFBA7 /* tinderDylib */,
+				9EA50DAC2DA19054003DFBA7 /* Frameworks */,
+				9EA50D982DA19054003DFBA7 /* Products */,
+				196967143EB3519AF1B69BD3 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		9EA50D982DA19054003DFBA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50D972DA19054003DFBA7 /* tinder.app */,
+				9EA50DA82DA19054003DFBA7 /* libtinderDylib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9EA50DAC2DA19054003DFBA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DAD2DA19054003DFBA7 /* JavaScriptCore.framework */,
+				9EA50DAF2DA19054003DFBA7 /* Foundation.framework */,
+				9EA50DB12DA19054003DFBA7 /* UIKit.framework */,
+				7EE99307449C841F744945CE /* Pods_tinder.framework */,
+				606089234F92874C3BA2024F /* Pods_tinderDylib.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EA50DB32DA19054003DFBA7 /* tinderDylib */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DEC2DA19054003DFBA7 /* tinderDylib.h */,
+				9EA50DEE2DA19054003DFBA7 /* tinderDylib.m */,
+				9EA50DF92DA190C7003DFBA7 /* Toast.h */,
+				9EA50DFA2DA190C7003DFBA7 /* Toast.m */,
+				395EA4CC2DB62C69009B5BA4 /* Tools.h */,
+				395EA4CD2DB62C69009B5BA4 /* Tools.m */,
+				9EA50DFB2DA190C7003DFBA7 /* FloatingExtendVC.h */,
+				9EA50DFC2DA190C7003DFBA7 /* FloatingExtendVC.m */,
+				9E9D72942DAAD84B00227A27 /* FloatingWindow.h */,
+				9E9D72952DAAD84B00227A27 /* FloatingWindow.m */,
+				9E9D727A2DAA7D2A00227A27 /* JailbreakDetectionTool.h */,
+				9E9D727B2DAA7D2A00227A27 /* JailbreakDetectionTool.m */,
+				9E9D73752DB4FF3300227A27 /* AESUtil */,
+				9E9D73602DB4FD1A00227A27 /* ZBNetwork */,
+				9EA50DB42DA19054003DFBA7 /* Logos */,
+				9EA50DB82DA19054003DFBA7 /* Config */,
+				9EA50DC52DA19054003DFBA7 /* Trace */,
+				9EA50DDD2DA19054003DFBA7 /* Tools */,
+				9EA50DE42DA19054003DFBA7 /* AntiAntiDebug */,
+				9EA50DE72DA19054003DFBA7 /* fishhook */,
+				9EA50DE22DA19054003DFBA7 /* Supporting Files */,
+			);
+			path = tinderDylib;
+			sourceTree = "<group>";
+		};
+		9EA50DB42DA19054003DFBA7 /* Logos */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DB52DA19054003DFBA7 /* tinderDylib.xm */,
+				9EA50DB62DA19054003DFBA7 /* tinderDylib.mm */,
+			);
+			path = Logos;
+			sourceTree = "<group>";
+		};
+		9EA50DB82DA19054003DFBA7 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DB92DA19054003DFBA7 /* MDConfigManager.h */,
+				9EA50DBB2DA19054003DFBA7 /* MDConfigManager.m */,
+				9EA50DBD2DA19054003DFBA7 /* MDCycriptManager.h */,
+				9EA50DBF2DA19054003DFBA7 /* MDCycriptManager.m */,
+				9EA50DC12DA19054003DFBA7 /* MDMethodTrace.h */,
+				9EA50DC32DA19054003DFBA7 /* MDMethodTrace.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		9EA50DC52DA19054003DFBA7 /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DC62DA19054003DFBA7 /* a1a2-selectortramps-arm.s */,
+				9EA50DC82DA19054003DFBA7 /* a1a2-selectortramps-arm64.s */,
+				9EA50DCA2DA19054003DFBA7 /* a1a2-selectortramps-i386.s */,
+				9EA50DCC2DA19054003DFBA7 /* a1a2-selectortramps-x86_64.s */,
+				9EA50DCE2DA19054003DFBA7 /* a2a3-selectortramps-arm.s */,
+				9EA50DD02DA19054003DFBA7 /* a2a3-selectortramps-i386.s */,
+				9EA50DD22DA19054003DFBA7 /* a2a3-selectortramps-x86_64.s */,
+				9EA50DD42DA19054003DFBA7 /* OCMethodTrace.h */,
+				9EA50DD62DA19054003DFBA7 /* OCMethodTrace.m */,
+				9EA50DD82DA19054003DFBA7 /* OCSelectorTrampolines.h */,
+				9EA50DDA2DA19054003DFBA7 /* OCSelectorTrampolines.mm */,
+				9EA50DDC2DA19054003DFBA7 /* selectortramps.mac */,
+			);
+			path = Trace;
+			sourceTree = "<group>";
+		};
+		9EA50DDD2DA19054003DFBA7 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DDE2DA19054003DFBA7 /* LLDBTools.h */,
+				9EA50DE02DA19054003DFBA7 /* LLDBTools.mm */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		9EA50DE22DA19054003DFBA7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DE32DA19054003DFBA7 /* tinderDylib-Prefix.pch */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9EA50DE42DA19054003DFBA7 /* AntiAntiDebug */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DE52DA19054003DFBA7 /* AntiAntiDebug.m */,
+			);
+			path = AntiAntiDebug;
+			sourceTree = "<group>";
+		};
+		9EA50DE72DA19054003DFBA7 /* fishhook */ = {
+			isa = PBXGroup;
+			children = (
+				9EA50DEA2DA19054003DFBA7 /* fishhook.h */,
+				9EA50DE82DA19054003DFBA7 /* fishhook.mm */,
+			);
+			path = fishhook;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9EA50DA62DA19054003DFBA7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EA50DBE2DA19054003DFBA7 /* MDCycriptManager.h in Headers */,
+				9EA50DC22DA19054003DFBA7 /* MDMethodTrace.h in Headers */,
+				9E9D73622DB4FD1A00227A27 /* ZBNetwork.h in Headers */,
+				9EA50DEB2DA19054003DFBA7 /* fishhook.h in Headers */,
+				9EA50DFD2DA190C7003DFBA7 /* FloatingExtendVC.h in Headers */,
+				9E9D72972DAAD84B00227A27 /* FloatingWindow.h in Headers */,
+				395EA4CF2DB62C69009B5BA4 /* Tools.h in Headers */,
+				9E9D73762DB4FF3400227A27 /* AESUtil.h in Headers */,
+				9E9D727D2DAA7D2A00227A27 /* JailbreakDetectionTool.h in Headers */,
+				9EA50DFE2DA190C7003DFBA7 /* Toast.h in Headers */,
+				9EA50DDF2DA19054003DFBA7 /* LLDBTools.h in Headers */,
+				9EA50DBA2DA19054003DFBA7 /* MDConfigManager.h in Headers */,
+				9EA50DED2DA19054003DFBA7 /* tinderDylib.h in Headers */,
+				9EA50DD92DA19054003DFBA7 /* OCSelectorTrampolines.h in Headers */,
+				9EA50DD52DA19054003DFBA7 /* OCMethodTrace.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9EA50D962DA19054003DFBA7 /* tinder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9EA50DF42DA19054003DFBA7 /* Build configuration list for PBXNativeTarget "tinder" */;
+			buildPhases = (
+				689CD4436EF03FE5928241F1 /* [CP] Check Pods Manifest.lock */,
+				9EA50D902DA19054003DFBA7 /* Sources */,
+				9EA50D912DA19054003DFBA7 /* Frameworks */,
+				9EA50D922DA19054003DFBA7 /* ShellScript */,
+				9EA50D932DA19054003DFBA7 /* Resources */,
+				9EA50D942DA19054003DFBA7 /* CopyFiles */,
+				9EA50D952DA19054003DFBA7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9EA50DAB2DA19054003DFBA7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9EA50D992DA19054003DFBA7 /* tinder */,
+			);
+			name = tinder;
+			productName = tinder;
+			productReference = 9EA50D972DA19054003DFBA7 /* tinder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9EA50DA72DA19054003DFBA7 /* tinderDylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9EA50DF12DA19054003DFBA7 /* Build configuration list for PBXNativeTarget "tinderDylib" */;
+			buildPhases = (
+				E2463B57663BEC6B5225AE49 /* [CP] Check Pods Manifest.lock */,
+				9EA50DA32DA19054003DFBA7 /* ShellScript */,
+				9EA50DA42DA19054003DFBA7 /* Sources */,
+				9EA50DA52DA19054003DFBA7 /* Frameworks */,
+				9EA50DA62DA19054003DFBA7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tinderDylib;
+			productName = tinderDylib;
+			productReference = 9EA50DA82DA19054003DFBA7 /* libtinderDylib.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9EA50D8C2DA19054003DFBA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					9EA50D962DA19054003DFBA7 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					9EA50DA72DA19054003DFBA7 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = 9EA50D8F2DA19054003DFBA7 /* Build configuration list for PBXProject "tinder" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9EA50D8B2DA19054003DFBA7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9EA50D982DA19054003DFBA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9EA50D962DA19054003DFBA7 /* tinder */,
+				9EA50DA72DA19054003DFBA7 /* tinderDylib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9EA50D932DA19054003DFBA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		689CD4436EF03FE5928241F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EA50D922DA19054003DFBA7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = /opt/MonkeyDev/Tools/pack.sh;
+		};
+		9EA50D952DA19054003DFBA7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/Tools/pack.sh codesign";
+		};
+		9EA50DA32DA19054003DFBA7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos\n";
+		};
+		E2463B57663BEC6B5225AE49 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tinderDylib-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9EA50D902DA19054003DFBA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EA50DA42DA19054003DFBA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9D73612DB4FD1A00227A27 /* ZBNetwork.m in Sources */,
+				9EA50DC02DA19054003DFBA7 /* MDCycriptManager.m in Sources */,
+				9EA50DC92DA19054003DFBA7 /* a1a2-selectortramps-arm64.s in Sources */,
+				395EA4CE2DB62C69009B5BA4 /* Tools.m in Sources */,
+				9EA50DC72DA19054003DFBA7 /* a1a2-selectortramps-arm.s in Sources */,
+				9EA50DCD2DA19054003DFBA7 /* a1a2-selectortramps-x86_64.s in Sources */,
+				9EA50DD72DA19054003DFBA7 /* OCMethodTrace.m in Sources */,
+				9EA50DBC2DA19054003DFBA7 /* MDConfigManager.m in Sources */,
+				9EA50DE92DA19054003DFBA7 /* fishhook.mm in Sources */,
+				9EA50DE62DA19054003DFBA7 /* AntiAntiDebug.m in Sources */,
+				9EA50DDB2DA19054003DFBA7 /* OCSelectorTrampolines.mm in Sources */,
+				9EA50DCB2DA19054003DFBA7 /* a1a2-selectortramps-i386.s in Sources */,
+				9E9D727C2DAA7D2A00227A27 /* JailbreakDetectionTool.m in Sources */,
+				9EA50DD12DA19054003DFBA7 /* a2a3-selectortramps-i386.s in Sources */,
+				9E9D72962DAAD84B00227A27 /* FloatingWindow.m in Sources */,
+				9EA50DCF2DA19054003DFBA7 /* a2a3-selectortramps-arm.s in Sources */,
+				9EA50DFF2DA190C7003DFBA7 /* Toast.m in Sources */,
+				9EA50E002DA190C7003DFBA7 /* FloatingExtendVC.m in Sources */,
+				9EA50DEF2DA19054003DFBA7 /* tinderDylib.m in Sources */,
+				9EA50DB72DA19054003DFBA7 /* tinderDylib.mm in Sources */,
+				9EA50DE12DA19054003DFBA7 /* LLDBTools.mm in Sources */,
+				9EA50DD32DA19054003DFBA7 /* a2a3-selectortramps-x86_64.s in Sources */,
+				9EA50DC42DA19054003DFBA7 /* MDMethodTrace.m in Sources */,
+				9E9D73772DB4FF3400227A27 /* AESUtil.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9EA50DAB2DA19054003DFBA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9EA50DA72DA19054003DFBA7 /* tinderDylib */;
+			targetProxy = 9EA50DAA2DA19054003DFBA7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9EA50DF22DA19054003DFBA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 474657ACCBE05F53F5F82FB4 /* Pods-tinderDylib.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88GF4V58LX;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(MonkeyDevPath)/Frameworks/**",
+					"$(MonkeyDevPath)/Librarys/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "tinderDylib/tinderDylib-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(MonkeyDevPath)/include",
+					"$(MonkeyDevTheosPath)/vendor/include/**",
+				);
+				INSTALL_PATH = "@executable_path/Frameworks/libtinderDylib.dylib";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(MonkeyDevPath)/Frameworks",
+					"$(MonkeyDevTheosPath)/vendor/lib/**",
+				);
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DTHEOS_INSTANCE_NAME=\"\\\"tinderDylib\\\"\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_library",
+					"$(MonkeyDevPath)/Frameworks/libsubstrate.dylib",
+					"-lcycript",
+					"-framework",
+					RevealServer,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		9EA50DF32DA19054003DFBA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A24B3F809B9CA505D6C0C86 /* Pods-tinderDylib.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 88GF4V58LX;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(MonkeyDevPath)/Frameworks/**",
+					"$(MonkeyDevPath)/Librarys/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "tinderDylib/tinderDylib-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(MonkeyDevPath)/include",
+					"$(MonkeyDevTheosPath)/vendor/include/**",
+				);
+				INSTALL_PATH = "@executable_path/Frameworks/libtinderDylib.dylib";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(MonkeyDevPath)/Frameworks",
+					"$(MonkeyDevTheosPath)/vendor/lib/**",
+				);
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /opt/theos;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DTHEOS_INSTANCE_NAME=\"\\\"tinderDylib\\\"\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-weak_library",
+					"$(MonkeyDevPath)/Frameworks/libsubstrate.dylib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9EA50DF52DA19054003DFBA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A35621CAA96270B1A1B5564D /* Pods-tinder.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88GF4V58LX;
+				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				MONKEYDEV_ADD_SUBSTRATE = YES;
+				MONKEYDEV_CLASS_DUMP = NO;
+				MONKEYDEV_DEFAULT_BUNDLEID = NO;
+				MONKEYDEV_INSERT_DYLIB = YES;
+				MONKEYDEV_RESTORE_SYMBOL = NO;
+				MONKEYDEV_TARGET_APP = Optional;
+				PODS_CONFIGURATION_BUILD_DIR = "$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PODS_ROOT = "${SRCROOT}/Pods";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cardify.tinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9EA50DF62DA19054003DFBA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3B7F665915D29D9B64FD2A7 /* Pods-tinder.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88GF4V58LX;
+				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				MONKEYDEV_ADD_SUBSTRATE = YES;
+				MONKEYDEV_CLASS_DUMP = NO;
+				MONKEYDEV_DEFAULT_BUNDLEID = NO;
+				MONKEYDEV_INSERT_DYLIB = YES;
+				MONKEYDEV_RESTORE_SYMBOL = NO;
+				MONKEYDEV_TARGET_APP = Optional;
+				PODS_CONFIGURATION_BUILD_DIR = "$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PODS_ROOT = "${SRCROOT}/Pods";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cardify.tinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9EA50DF72DA19054003DFBA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9EA50DF82DA19054003DFBA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9EA50D8F2DA19054003DFBA7 /* Build configuration list for PBXProject "tinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EA50DF72DA19054003DFBA7 /* Debug */,
+				9EA50DF82DA19054003DFBA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9EA50DF12DA19054003DFBA7 /* Build configuration list for PBXNativeTarget "tinderDylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EA50DF22DA19054003DFBA7 /* Debug */,
+				9EA50DF32DA19054003DFBA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9EA50DF42DA19054003DFBA7 /* Build configuration list for PBXNativeTarget "tinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EA50DF52DA19054003DFBA7 /* Debug */,
+				9EA50DF62DA19054003DFBA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9EA50D8C2DA19054003DFBA7 /* Project object */;
+}
