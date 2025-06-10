@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>API-versioning-number</key>
-	<integer>6740</integer>
+	<integer>6795</integer>
 	<key>AppIdentifierPrefix</key>
 	<string>TNDR</string>
 	<key>BuildMachineOSBuild</key>
@@ -83,7 +83,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>16.8.1</string>
+	<string>16.10.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -155,9 +155,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>16080100</string>
+	<string>16100100</string>
 	<key>DTAppStoreToolsBuild</key>
-	<string>16E137</string>
+	<string>16F3</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
