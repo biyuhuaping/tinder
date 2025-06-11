@@ -1,10 +1,11 @@
-#line 1 "/Users/zb/gitCode/tinder/tinderDylib/Logos/tinderDylib.xm"
+#line 1 "/Users/zb/GitHub/tinder/tinderDylib/Logos/tinderDylib.xm"
 
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "fishhook.h"  
 #include <sys/sysctl.h>         
+#import <WebKit/WebKit.h>
 
 #define kFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"device_config.json"]
 #define kAutoPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"auto_status.json"]
@@ -63,10 +64,10 @@ static NSString *fakeUserAgent() {
 
 __asm__(".linker_option \"-framework\", \"CydiaSubstrate\"");
 
-@class GADOMIDDevice; @class BugsnagDevice; @class ASIdentifierManager; @class UIScreen; @class UIDevice; @class GADDevice; @class AppsFlyerUtils; @class NSJSONSerialization; @class AFSDKChecksum; @class WKWebView; @class CTCarrier; @class UADSMetricCommonTags; @class NSProcessInfo; @class NSBundle; @class USRVDevice; 
-static NSUUID * (*_logos_orig$_ungrouped$ASIdentifierManager$advertisingIdentifier)(_LOGOS_SELF_TYPE_NORMAL ASIdentifierManager* _LOGOS_SELF_CONST, SEL); static NSUUID * _logos_method$_ungrouped$ASIdentifierManager$advertisingIdentifier(_LOGOS_SELF_TYPE_NORMAL ASIdentifierManager* _LOGOS_SELF_CONST, SEL); static NSUUID * (*_logos_orig$_ungrouped$UIDevice$identifierForVendor)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSUUID * _logos_method$_ungrouped$UIDevice$identifierForVendor(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$model)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$model(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$name)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$name(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$systemName)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$systemName(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$systemVersion)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$systemVersion(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static float (*_logos_orig$_ungrouped$UIDevice$batteryLevel)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static float _logos_method$_ungrouped$UIDevice$batteryLevel(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceBatteryState (*_logos_orig$_ungrouped$UIDevice$batteryState)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceBatteryState _logos_method$_ungrouped$UIDevice$batteryState(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceOrientation (*_logos_orig$_ungrouped$UIDevice$orientation)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceOrientation _logos_method$_ungrouped$UIDevice$orientation(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIUserInterfaceIdiom (*_logos_orig$_ungrouped$UIDevice$userInterfaceIdiom)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIUserInterfaceIdiom _logos_method$_ungrouped$UIDevice$userInterfaceIdiom(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$serialNumber)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$serialNumber(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSData * (*_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static NSData * _logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static NSData * (*_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static NSData * _logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static id (*_logos_meta_orig$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, NSData *, NSJSONReadingOptions, NSError **); static id _logos_meta_method$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, NSData *, NSJSONReadingOptions, NSError **); static void (*_logos_orig$_ungrouped$WKWebView$loadRequest$)(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSURLRequest *); static void _logos_method$_ungrouped$WKWebView$loadRequest$(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSURLRequest *); static void (*_logos_orig$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$)(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSString *, void (^)(id result, NSError *error)); static void _logos_method$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSString *, void (^)(id result, NSError *error)); static NSDictionary * (*_logos_orig$_ungrouped$NSBundle$infoDictionary)(_LOGOS_SELF_TYPE_NORMAL NSBundle* _LOGOS_SELF_CONST, SEL); static NSDictionary * _logos_method$_ungrouped$NSBundle$infoDictionary(_LOGOS_SELF_TYPE_NORMAL NSBundle* _LOGOS_SELF_CONST, SEL); static int (*_logos_orig$_ungrouped$BugsnagDevice$jailbroken)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static int _logos_method$_ungrouped$BugsnagDevice$jailbroken(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$BugsnagDevice$locale)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$BugsnagDevice$locale(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$BugsnagDevice$modelNumber)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$BugsnagDevice$modelNumber(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$BugsnagDevice$setOsVersion$)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$BugsnagDevice$setOsVersion$(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL, NSString *); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$isVPNConnected)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isVPNConnected(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static id (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$getStoreReceipt)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static id _logos_meta_method$_ungrouped$AppsFlyerUtils$getStoreReceipt(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$isValidDeeplink$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isValidDeeplink$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$isOneLinkValid$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isOneLinkValid$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$currentVersionMatchesPattern$version$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$currentVersionMatchesPattern$version$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int, int); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static NSString * (*_logos_orig$_ungrouped$CTCarrier$carrierName)(_LOGOS_SELF_TYPE_NORMAL CTCarrier* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$CTCarrier$carrierName(_LOGOS_SELF_TYPE_NORMAL CTCarrier* _LOGOS_SELF_CONST, SEL); static unsigned long long (*_logos_orig$_ungrouped$NSProcessInfo$physicalMemory)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static unsigned long long _logos_method$_ungrouped$NSProcessInfo$physicalMemory(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static BOOL (*_logos_orig$_ungrouped$NSProcessInfo$isLowPowerModeEnabled)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static BOOL _logos_method$_ungrouped$NSProcessInfo$isLowPowerModeEnabled(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSOperatingSystemVersion (*_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersion)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSOperatingSystemVersion _logos_method$_ungrouped$NSProcessInfo$operatingSystemVersion(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersionString)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$NSProcessInfo$operatingSystemVersionString(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static CGFloat (*_logos_orig$_ungrouped$UIScreen$brightness)(_LOGOS_SELF_TYPE_NORMAL UIScreen* _LOGOS_SELF_CONST, SEL); static CGFloat _logos_method$_ungrouped$UIScreen$brightness(_LOGOS_SELF_TYPE_NORMAL UIScreen* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_meta_orig$_ungrouped$GADOMIDDevice$deviceOsVersion)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * _logos_meta_method$_ungrouped$GADOMIDDevice$deviceOsVersion(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_meta_orig$_ungrouped$USRVDevice$getOsVersion)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * _logos_meta_method$_ungrouped$USRVDevice$getOsVersion(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$GADDevice$systemVersion)(_LOGOS_SELF_TYPE_NORMAL GADDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$GADDevice$systemVersion(_LOGOS_SELF_TYPE_NORMAL GADDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_meta_orig$_ungrouped$UADSMetricCommonTags$systemVersion)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * _logos_meta_method$_ungrouped$UADSMetricCommonTags$systemVersion(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UADSMetricCommonTags$systemVersion)(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UADSMetricCommonTags$systemVersion(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL); static UADSMetricCommonTags* (*_logos_orig$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$)(_LOGOS_SELF_TYPE_INIT UADSMetricCommonTags*, SEL, NSString *, NSString *, NSString *, NSString *, BOOL, NSDictionary *) _LOGOS_RETURN_RETAINED; static UADSMetricCommonTags* _logos_method$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$(_LOGOS_SELF_TYPE_INIT UADSMetricCommonTags*, SEL, NSString *, NSString *, NSString *, NSString *, BOOL, NSDictionary *) _LOGOS_RETURN_RETAINED; static void (*_logos_orig$_ungrouped$UADSMetricCommonTags$setSystemVersion$)(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$UADSMetricCommonTags$setSystemVersion$(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL, NSString *); static NSString * (*_logos_orig$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$)(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST, SEL, NSString *, NSString *, NSString *, NSString *, NSString *, BOOL, BOOL, BOOL, BOOL, BOOL); static NSString * _logos_method$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST, SEL, NSString *, NSString *, NSString *, NSString *, NSString *, BOOL, BOOL, BOOL, BOOL, BOOL); 
+@class GADDevice; @class NSTimeZone; @class USRVDevice; @class AppsFlyerUtils; @class NSBundle; @class UIDevice; @class CTCarrier; @class _TtC11CaptchaView21ArkoseMessageReceiver; @class NSProcessInfo; @class NSJSONSerialization; @class _TtC4Auth29GatedSMSCaptchaViewController; @class _TtC13TinderAuthSMS30EnterPhoneNumberViewController; @class ASIdentifierManager; @class UADSMetricCommonTags; @class BugsnagDevice; @class GADOMIDDevice; @class UIScreen; @class AFSDKChecksum; @class NSLocale; @class WKWebView; @class _TtC9TinderKit7TUIView; 
+static NSUUID * (*_logos_orig$_ungrouped$ASIdentifierManager$advertisingIdentifier)(_LOGOS_SELF_TYPE_NORMAL ASIdentifierManager* _LOGOS_SELF_CONST, SEL); static NSUUID * _logos_method$_ungrouped$ASIdentifierManager$advertisingIdentifier(_LOGOS_SELF_TYPE_NORMAL ASIdentifierManager* _LOGOS_SELF_CONST, SEL); static NSUUID * (*_logos_orig$_ungrouped$UIDevice$identifierForVendor)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSUUID * _logos_method$_ungrouped$UIDevice$identifierForVendor(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$model)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$model(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$name)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$name(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$systemName)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$systemName(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$systemVersion)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$systemVersion(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static float (*_logos_orig$_ungrouped$UIDevice$batteryLevel)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static float _logos_method$_ungrouped$UIDevice$batteryLevel(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceBatteryState (*_logos_orig$_ungrouped$UIDevice$batteryState)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceBatteryState _logos_method$_ungrouped$UIDevice$batteryState(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceOrientation (*_logos_orig$_ungrouped$UIDevice$orientation)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIDeviceOrientation _logos_method$_ungrouped$UIDevice$orientation(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIUserInterfaceIdiom (*_logos_orig$_ungrouped$UIDevice$userInterfaceIdiom)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static UIUserInterfaceIdiom _logos_method$_ungrouped$UIDevice$userInterfaceIdiom(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UIDevice$serialNumber)(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UIDevice$serialNumber(_LOGOS_SELF_TYPE_NORMAL UIDevice* _LOGOS_SELF_CONST, SEL); static NSData * (*_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static NSData * _logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static NSData * (*_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static NSData * _logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, id, NSJSONWritingOptions, NSError **); static id (*_logos_meta_orig$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, NSData *, NSJSONReadingOptions, NSError **); static id _logos_meta_method$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, NSData *, NSJSONReadingOptions, NSError **); static void (*_logos_orig$_ungrouped$WKWebView$loadRequest$)(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSURLRequest *); static void _logos_method$_ungrouped$WKWebView$loadRequest$(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSURLRequest *); static void (*_logos_orig$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$)(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSString *, void (^)(id result, NSError *error)); static void _logos_method$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$(_LOGOS_SELF_TYPE_NORMAL WKWebView* _LOGOS_SELF_CONST, SEL, NSString *, void (^)(id result, NSError *error)); static NSDictionary * (*_logos_orig$_ungrouped$NSBundle$infoDictionary)(_LOGOS_SELF_TYPE_NORMAL NSBundle* _LOGOS_SELF_CONST, SEL); static NSDictionary * _logos_method$_ungrouped$NSBundle$infoDictionary(_LOGOS_SELF_TYPE_NORMAL NSBundle* _LOGOS_SELF_CONST, SEL); static id (*_logos_meta_orig$_ungrouped$NSLocale$currentLocale)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static id _logos_meta_method$_ungrouped$NSLocale$currentLocale(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$NSLocale$localeIdentifier)(_LOGOS_SELF_TYPE_NORMAL NSLocale* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$NSLocale$localeIdentifier(_LOGOS_SELF_TYPE_NORMAL NSLocale* _LOGOS_SELF_CONST, SEL); static NSArray<NSString *> * (*_logos_meta_orig$_ungrouped$NSLocale$preferredLanguages)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSArray<NSString *> * _logos_meta_method$_ungrouped$NSLocale$preferredLanguages(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSTimeZone * (*_logos_meta_orig$_ungrouped$NSTimeZone$localTimeZone)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSTimeZone * _logos_meta_method$_ungrouped$NSTimeZone$localTimeZone(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSTimeZone * (*_logos_meta_orig$_ungrouped$NSTimeZone$systemTimeZone)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSTimeZone * _logos_meta_method$_ungrouped$NSTimeZone$systemTimeZone(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static int (*_logos_orig$_ungrouped$BugsnagDevice$jailbroken)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static int _logos_method$_ungrouped$BugsnagDevice$jailbroken(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$BugsnagDevice$locale)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$BugsnagDevice$locale(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$BugsnagDevice$modelNumber)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$BugsnagDevice$modelNumber(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$BugsnagDevice$setOsVersion$)(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$BugsnagDevice$setOsVersion$(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST, SEL, NSString *); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$isVPNConnected)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isVPNConnected(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static int (*_logos_meta_orig$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static int _logos_meta_method$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL, int); static NSString * (*_logos_orig$_ungrouped$CTCarrier$carrierName)(_LOGOS_SELF_TYPE_NORMAL CTCarrier* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$CTCarrier$carrierName(_LOGOS_SELF_TYPE_NORMAL CTCarrier* _LOGOS_SELF_CONST, SEL); static unsigned long long (*_logos_orig$_ungrouped$NSProcessInfo$physicalMemory)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static unsigned long long _logos_method$_ungrouped$NSProcessInfo$physicalMemory(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static BOOL (*_logos_orig$_ungrouped$NSProcessInfo$isLowPowerModeEnabled)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static BOOL _logos_method$_ungrouped$NSProcessInfo$isLowPowerModeEnabled(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSOperatingSystemVersion (*_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersion)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSOperatingSystemVersion _logos_method$_ungrouped$NSProcessInfo$operatingSystemVersion(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersionString)(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$NSProcessInfo$operatingSystemVersionString(_LOGOS_SELF_TYPE_NORMAL NSProcessInfo* _LOGOS_SELF_CONST, SEL); static CGFloat (*_logos_orig$_ungrouped$UIScreen$brightness)(_LOGOS_SELF_TYPE_NORMAL UIScreen* _LOGOS_SELF_CONST, SEL); static CGFloat _logos_method$_ungrouped$UIScreen$brightness(_LOGOS_SELF_TYPE_NORMAL UIScreen* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_meta_orig$_ungrouped$GADOMIDDevice$deviceOsVersion)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * _logos_meta_method$_ungrouped$GADOMIDDevice$deviceOsVersion(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_meta_orig$_ungrouped$USRVDevice$getOsVersion)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * _logos_meta_method$_ungrouped$USRVDevice$getOsVersion(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$GADDevice$systemVersion)(_LOGOS_SELF_TYPE_NORMAL GADDevice* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$GADDevice$systemVersion(_LOGOS_SELF_TYPE_NORMAL GADDevice* _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_meta_orig$_ungrouped$UADSMetricCommonTags$systemVersion)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * _logos_meta_method$_ungrouped$UADSMetricCommonTags$systemVersion(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static NSString * (*_logos_orig$_ungrouped$UADSMetricCommonTags$systemVersion)(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL); static NSString * _logos_method$_ungrouped$UADSMetricCommonTags$systemVersion(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL); static UADSMetricCommonTags* (*_logos_orig$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$)(_LOGOS_SELF_TYPE_INIT UADSMetricCommonTags*, SEL, NSString *, NSString *, NSString *, NSString *, BOOL, NSDictionary *) _LOGOS_RETURN_RETAINED; static UADSMetricCommonTags* _logos_method$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$(_LOGOS_SELF_TYPE_INIT UADSMetricCommonTags*, SEL, NSString *, NSString *, NSString *, NSString *, BOOL, NSDictionary *) _LOGOS_RETURN_RETAINED; static void (*_logos_orig$_ungrouped$UADSMetricCommonTags$setSystemVersion$)(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL, NSString *); static void _logos_method$_ungrouped$UADSMetricCommonTags$setSystemVersion$(_LOGOS_SELF_TYPE_NORMAL UADSMetricCommonTags* _LOGOS_SELF_CONST, SEL, NSString *); static NSString * (*_logos_orig$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$)(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST, SEL, NSString *, NSString *, NSString *, NSString *, NSString *, BOOL, BOOL, BOOL, BOOL, BOOL); static NSString * _logos_method$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST, SEL, NSString *, NSString *, NSString *, NSString *, NSString *, BOOL, BOOL, BOOL, BOOL, BOOL); static int (*_logos_orig$_ungrouped$AFSDKChecksum$calculateV2SanityFlagsWithIsSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$)(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST, SEL, int, int, int, int, int); static int _logos_method$_ungrouped$AFSDKChecksum$calculateV2SanityFlagsWithIsSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST, SEL, int, int, int, int, int); static void (*_logos_orig$_ungrouped$_TtC9TinderKit7TUIView$traitCollectionDidChange$)(_LOGOS_SELF_TYPE_NORMAL _TtC9TinderKit7TUIView* _LOGOS_SELF_CONST, SEL, UITraitCollection *); static void _logos_method$_ungrouped$_TtC9TinderKit7TUIView$traitCollectionDidChange$(_LOGOS_SELF_TYPE_NORMAL _TtC9TinderKit7TUIView* _LOGOS_SELF_CONST, SEL, UITraitCollection *); static int (*_logos_orig$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories)(_LOGOS_SELF_TYPE_NORMAL _TtC13TinderAuthSMS30EnterPhoneNumberViewController* _LOGOS_SELF_CONST, SEL); static int _logos_method$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories(_LOGOS_SELF_TYPE_NORMAL _TtC13TinderAuthSMS30EnterPhoneNumberViewController* _LOGOS_SELF_CONST, SEL); static int (*_logos_orig$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey)(_LOGOS_SELF_TYPE_NORMAL _TtC4Auth29GatedSMSCaptchaViewController* _LOGOS_SELF_CONST, SEL); static int _logos_method$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey(_LOGOS_SELF_TYPE_NORMAL _TtC4Auth29GatedSMSCaptchaViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$loadRequest$)(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST, SEL, NSURLRequest *); static void _logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$loadRequest$(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST, SEL, NSURLRequest *); static void (*_logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$evaluateJavaScript$completionHandler$)(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST, SEL, NSString *, void (^)(id result, NSError *error)); static void _logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$evaluateJavaScript$completionHandler$(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST, SEL, NSString *, void (^)(id result, NSError *error)); static void (*_logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$userContentController$didReceiveScriptMessage$)(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST, SEL, WKUserContentController *, WKScriptMessage *); static void _logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$userContentController$didReceiveScriptMessage$(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST, SEL, WKUserContentController *, WKScriptMessage *); 
 
-#line 42 "/Users/zb/gitCode/tinder/tinderDylib/Logos/tinderDylib.xm"
+#line 43 "/Users/zb/GitHub/tinder/tinderDylib/Logos/tinderDylib.xm"
 #pragma mark - IDFA
 
 
@@ -564,79 +565,79 @@ static NSDictionary * _logos_method$_ungrouped$NSBundle$infoDictionary(_LOGOS_SE
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+static id _logos_meta_method$_ungrouped$NSLocale$currentLocale(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
+    NSLocale *fake = [NSLocale localeWithLocaleIdentifier:@"locale"];
+    return fake;
+}
+
+
+static NSString * _logos_method$_ungrouped$NSLocale$localeIdentifier(_LOGOS_SELF_TYPE_NORMAL NSLocale* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
+    
+    
+    NSDictionary *config = loadConfigJson();
+    
+    NSString *locale = config[@"locale"] ?: _logos_orig$_ungrouped$NSLocale$localeIdentifier(self, _cmd);
+    return locale;
+}
+
+
+static NSArray<NSString *> * _logos_meta_method$_ungrouped$NSLocale$preferredLanguages(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
+    NSArray *orig = _logos_meta_orig$_ungrouped$NSLocale$preferredLanguages(self, _cmd);
+    
+
+    NSDictionary *config = loadConfigJson();
+    NSString *spoofed = config[@"kb"]; 
+    if (spoofed) {
+        return @[spoofed];
+    }
+    return orig;
+}
+
+
+
+#pragma mark - NSTimeZone
+
+
+
+static NSTimeZone * _logos_meta_method$_ungrouped$NSTimeZone$localTimeZone(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
+    NSTimeZone *orig = _logos_meta_orig$_ungrouped$NSTimeZone$localTimeZone(self, _cmd);
+    
+
+    NSDictionary *config = loadConfigJson();
+    NSString *timezoneName = config[@"tz_offset"];
+
+    
+    if ([timezoneName isKindOfClass:[NSString class]]) {
+        NSTimeZone *fakeTZ = [NSTimeZone timeZoneWithName:timezoneName];
+        if (fakeTZ) {
+            
+            return fakeTZ;
+        } else {
+           
+        }
+    }
+    return orig;
+}
+
+
+static NSTimeZone * _logos_meta_method$_ungrouped$NSTimeZone$systemTimeZone(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
+    NSTimeZone *orig = _logos_meta_orig$_ungrouped$NSTimeZone$systemTimeZone(self, _cmd);
+    
+
+    NSDictionary *config = loadConfigJson();
+    NSString *timezoneName = config[@"tz_offset"];
+
+    if ([timezoneName isKindOfClass:[NSString class]]) {
+        NSTimeZone *fakeTZ = [NSTimeZone timeZoneWithName:timezoneName];
+        if (fakeTZ) {
+            NSLog(@"[Hook] 使用伪造时区: %@", timezoneName);
+            return fakeTZ;
+        } else {
+            NSLog(@"[Hook] 伪造时区无效，使用原始值");
+        }
+    }
+    return orig;
+}
 
 
 
@@ -996,6 +997,10 @@ static void init_env_hook() {
 
 
 
+
+
+
+
 static int _logos_method$_ungrouped$BugsnagDevice$jailbroken(_LOGOS_SELF_TYPE_NORMAL BugsnagDevice* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd){
     int jailbroken = _logos_orig$_ungrouped$BugsnagDevice$jailbroken(self, _cmd);
     NSLog(@"[Hook]jailbroken: %d", jailbroken);
@@ -1047,33 +1052,31 @@ static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isVPNConnected(_LOGOS_SE
 
 
 
-static id _logos_meta_method$_ungrouped$AppsFlyerUtils$getStoreReceipt(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
-    id original = _logos_meta_orig$_ungrouped$AppsFlyerUtils$getStoreReceipt(self, _cmd);
-    NSLog(@"🍌 [Original Receipt] %@", original);
-    return original; 
-}
 
 
 
-static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isValidDeeplink$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, int arg) {
-    int original = _logos_meta_orig$_ungrouped$AppsFlyerUtils$isValidDeeplink$(self, _cmd, arg);
-    NSLog(@"🍌 [Original Deeplink] %d", original);
-    return 1; 
-}
 
 
-static int _logos_meta_method$_ungrouped$AppsFlyerUtils$isOneLinkValid$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, int arg) {
-    int original = _logos_meta_orig$_ungrouped$AppsFlyerUtils$isOneLinkValid$(self, _cmd, arg);
-    NSLog(@"🍌 [Original OneLink] %d", original);
-    return 1; 
-}
 
 
-static int _logos_meta_method$_ungrouped$AppsFlyerUtils$currentVersionMatchesPattern$version$(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, int arg1, int arg2) {
-    int original = _logos_meta_orig$_ungrouped$AppsFlyerUtils$currentVersionMatchesPattern$version$(self, _cmd, arg1, arg2);
-    NSLog(@"🍌 [Original VersionMatch] %d", original);
-    return 1; 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1395,6 +1398,96 @@ isDebuggerAttached: %d",
 }
 
 
+
+
+
+
+static int _logos_method$_ungrouped$AFSDKChecksum$calculateV2SanityFlagsWithIsSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$(_LOGOS_SELF_TYPE_NORMAL AFSDKChecksum* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, int isSimulator, int isDevBuild, int isJailBroken, int isCounterValid, int isDebuggerAttached) {
+    NSLog(@"[Hook] isSimulator: %d, isDevBuild: %d, isJailBroken: %d, isCounterValid: %d, isDebuggerAttached: %d",
+        isSimulator, isDevBuild, isJailBroken, isCounterValid, isDebuggerAttached);
+
+    
+    int fakeSimulator = 0;
+    int fakeDevBuild = 0;
+    int fakeJailbroken = 0;
+    int fakeCounterValid = 1;
+    int fakeDebuggerAttached = 0;
+
+    int result = _logos_orig$_ungrouped$AFSDKChecksum$calculateV2SanityFlagsWithIsSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$(self, _cmd, fakeSimulator, fakeDevBuild, fakeJailbroken, fakeCounterValid, fakeDebuggerAttached);
+
+    NSLog(@"[Hook] calculateV2SanityFlags return: %d", result);
+    return result;
+}
+
+
+
+
+
+
+static void _logos_method$_ungrouped$_TtC9TinderKit7TUIView$traitCollectionDidChange$(_LOGOS_SELF_TYPE_NORMAL _TtC9TinderKit7TUIView* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, UITraitCollection * previousTraitCollection) {
+    NSLog(@"[TinderKit] TraitCollectionDidChange called! Previous: %@", previousTraitCollection);
+    
+    _logos_orig$_ungrouped$_TtC9TinderKit7TUIView$traitCollectionDidChange$(self, _cmd, previousTraitCollection);
+}
+
+
+
+
+
+
+static int _logos_method$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories(_LOGOS_SELF_TYPE_NORMAL _TtC13TinderAuthSMS30EnterPhoneNumberViewController* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd){
+    NSLog(@"[TinderKit] overrideChildrenContentSizeCategories: %@", _logos_orig$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories(self, _cmd));
+    return _logos_orig$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories(self, _cmd);
+}
+
+
+
+
+
+static int _logos_method$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey(_LOGOS_SELF_TYPE_NORMAL _TtC4Auth29GatedSMSCaptchaViewController* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd){
+    NSLog(@"[TinderKit] overrideChildrenContentSizeCategories: %@", _logos_orig$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey(self, _cmd));
+    return _logos_orig$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey(self, _cmd);
+}
+
+
+
+static void _logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$loadRequest$(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, NSURLRequest * request) {
+    NSLog(@"📦 TtC11Captcha 请求：%@", request.URL.absoluteString);
+    return _logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$loadRequest$(self, _cmd, request);
+}
+static void _logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$evaluateJavaScript$completionHandler$(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, NSString * javaScriptString, void (^completionHandler)(id result, NSError *error)) {
+    NSLog(@"📡 [TtC11Captcha] evaluateJavaScript called:\n%@", javaScriptString);
+
+    
+    
+    if ([javaScriptString containsString:@"submit"]) {
+        NSLog(@"🚨 TtC11Captcha可能是提交表单相关 JS");
+    }
+    
+    _logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$evaluateJavaScript$completionHandler$(self, _cmd, javaScriptString, completionHandler);
+}
+static void _logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$userContentController$didReceiveScriptMessage$(_LOGOS_SELF_TYPE_NORMAL _TtC11CaptchaView21ArkoseMessageReceiver* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, WKUserContentController * userContentController, WKScriptMessage * message) {
+    NSLog(@"💡 Hook 成功: JS 发送消息 = %@", message.body);
+    
+    if ([message.body isKindOfClass:[NSString class]] && [message.body isEqualToString:@"verifySuccess"]) {
+        NSLog(@"✅ Arkose 验证通过");
+        
+    }
+    _logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$userContentController$didReceiveScriptMessage$(self, _cmd, userContentController, message); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$ASIdentifierManager = objc_getClass("ASIdentifierManager"); { MSHookMessageEx(_logos_class$_ungrouped$ASIdentifierManager, @selector(advertisingIdentifier), (IMP)&_logos_method$_ungrouped$ASIdentifierManager$advertisingIdentifier, (IMP*)&_logos_orig$_ungrouped$ASIdentifierManager$advertisingIdentifier);}Class _logos_class$_ungrouped$UIDevice = objc_getClass("UIDevice"); { MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(identifierForVendor), (IMP)&_logos_method$_ungrouped$UIDevice$identifierForVendor, (IMP*)&_logos_orig$_ungrouped$UIDevice$identifierForVendor);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(model), (IMP)&_logos_method$_ungrouped$UIDevice$model, (IMP*)&_logos_orig$_ungrouped$UIDevice$model);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(name), (IMP)&_logos_method$_ungrouped$UIDevice$name, (IMP*)&_logos_orig$_ungrouped$UIDevice$name);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(systemName), (IMP)&_logos_method$_ungrouped$UIDevice$systemName, (IMP*)&_logos_orig$_ungrouped$UIDevice$systemName);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(systemVersion), (IMP)&_logos_method$_ungrouped$UIDevice$systemVersion, (IMP*)&_logos_orig$_ungrouped$UIDevice$systemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(batteryLevel), (IMP)&_logos_method$_ungrouped$UIDevice$batteryLevel, (IMP*)&_logos_orig$_ungrouped$UIDevice$batteryLevel);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(batteryState), (IMP)&_logos_method$_ungrouped$UIDevice$batteryState, (IMP*)&_logos_orig$_ungrouped$UIDevice$batteryState);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(orientation), (IMP)&_logos_method$_ungrouped$UIDevice$orientation, (IMP*)&_logos_orig$_ungrouped$UIDevice$orientation);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(userInterfaceIdiom), (IMP)&_logos_method$_ungrouped$UIDevice$userInterfaceIdiom, (IMP*)&_logos_orig$_ungrouped$UIDevice$userInterfaceIdiom);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(serialNumber), (IMP)&_logos_method$_ungrouped$UIDevice$serialNumber, (IMP*)&_logos_orig$_ungrouped$UIDevice$serialNumber);}Class _logos_class$_ungrouped$NSJSONSerialization = objc_getClass("NSJSONSerialization"); Class _logos_metaclass$_ungrouped$NSJSONSerialization = object_getClass(_logos_class$_ungrouped$NSJSONSerialization); { MSHookMessageEx(_logos_metaclass$_ungrouped$NSJSONSerialization, @selector(dataWithJSONObject11:options:error:), (IMP)&_logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$, (IMP*)&_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$NSJSONSerialization, @selector(dataWithJSONObject:options:error:), (IMP)&_logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$, (IMP*)&_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$NSJSONSerialization, @selector(JSONObjectWithData:options:error:), (IMP)&_logos_meta_method$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$, (IMP*)&_logos_meta_orig$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$);}Class _logos_class$_ungrouped$WKWebView = objc_getClass("WKWebView"); { MSHookMessageEx(_logos_class$_ungrouped$WKWebView, @selector(loadRequest:), (IMP)&_logos_method$_ungrouped$WKWebView$loadRequest$, (IMP*)&_logos_orig$_ungrouped$WKWebView$loadRequest$);}{ MSHookMessageEx(_logos_class$_ungrouped$WKWebView, @selector(evaluateJavaScript:completionHandler:), (IMP)&_logos_method$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$, (IMP*)&_logos_orig$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$);}Class _logos_class$_ungrouped$NSBundle = objc_getClass("NSBundle"); { MSHookMessageEx(_logos_class$_ungrouped$NSBundle, @selector(infoDictionary), (IMP)&_logos_method$_ungrouped$NSBundle$infoDictionary, (IMP*)&_logos_orig$_ungrouped$NSBundle$infoDictionary);}Class _logos_class$_ungrouped$BugsnagDevice = objc_getClass("BugsnagDevice"); { MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(jailbroken), (IMP)&_logos_method$_ungrouped$BugsnagDevice$jailbroken, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$jailbroken);}{ MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(locale), (IMP)&_logos_method$_ungrouped$BugsnagDevice$locale, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$locale);}{ MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(modelNumber), (IMP)&_logos_method$_ungrouped$BugsnagDevice$modelNumber, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$modelNumber);}{ MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(setOsVersion:), (IMP)&_logos_method$_ungrouped$BugsnagDevice$setOsVersion$, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$setOsVersion$);}Class _logos_class$_ungrouped$AppsFlyerUtils = objc_getClass("AppsFlyerUtils"); Class _logos_metaclass$_ungrouped$AppsFlyerUtils = object_getClass(_logos_class$_ungrouped$AppsFlyerUtils); { MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(isJailbrokenWithSkipAdvancedJailbreakValidation:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(isVPNConnected), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$isVPNConnected, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$isVPNConnected);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(getStoreReceipt), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$getStoreReceipt, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$getStoreReceipt);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(isValidDeeplink:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$isValidDeeplink$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$isValidDeeplink$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(isOneLinkValid:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$isOneLinkValid$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$isOneLinkValid$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(currentVersionMatchesPattern:version:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$currentVersionMatchesPattern$version$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$currentVersionMatchesPattern$version$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(shouldCachePurchaseEventWithStatusCode:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$);}Class _logos_class$_ungrouped$CTCarrier = objc_getClass("CTCarrier"); { MSHookMessageEx(_logos_class$_ungrouped$CTCarrier, @selector(carrierName), (IMP)&_logos_method$_ungrouped$CTCarrier$carrierName, (IMP*)&_logos_orig$_ungrouped$CTCarrier$carrierName);}Class _logos_class$_ungrouped$NSProcessInfo = objc_getClass("NSProcessInfo"); { MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(physicalMemory), (IMP)&_logos_method$_ungrouped$NSProcessInfo$physicalMemory, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$physicalMemory);}{ MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(isLowPowerModeEnabled), (IMP)&_logos_method$_ungrouped$NSProcessInfo$isLowPowerModeEnabled, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$isLowPowerModeEnabled);}{ MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(operatingSystemVersion), (IMP)&_logos_method$_ungrouped$NSProcessInfo$operatingSystemVersion, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(operatingSystemVersionString), (IMP)&_logos_method$_ungrouped$NSProcessInfo$operatingSystemVersionString, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersionString);}Class _logos_class$_ungrouped$UIScreen = objc_getClass("UIScreen"); { MSHookMessageEx(_logos_class$_ungrouped$UIScreen, @selector(brightness), (IMP)&_logos_method$_ungrouped$UIScreen$brightness, (IMP*)&_logos_orig$_ungrouped$UIScreen$brightness);}Class _logos_class$_ungrouped$GADOMIDDevice = objc_getClass("GADOMIDDevice"); Class _logos_metaclass$_ungrouped$GADOMIDDevice = object_getClass(_logos_class$_ungrouped$GADOMIDDevice); { MSHookMessageEx(_logos_metaclass$_ungrouped$GADOMIDDevice, @selector(deviceOsVersion), (IMP)&_logos_meta_method$_ungrouped$GADOMIDDevice$deviceOsVersion, (IMP*)&_logos_meta_orig$_ungrouped$GADOMIDDevice$deviceOsVersion);}Class _logos_class$_ungrouped$USRVDevice = objc_getClass("USRVDevice"); Class _logos_metaclass$_ungrouped$USRVDevice = object_getClass(_logos_class$_ungrouped$USRVDevice); { MSHookMessageEx(_logos_metaclass$_ungrouped$USRVDevice, @selector(getOsVersion), (IMP)&_logos_meta_method$_ungrouped$USRVDevice$getOsVersion, (IMP*)&_logos_meta_orig$_ungrouped$USRVDevice$getOsVersion);}Class _logos_class$_ungrouped$GADDevice = objc_getClass("GADDevice"); { MSHookMessageEx(_logos_class$_ungrouped$GADDevice, @selector(systemVersion), (IMP)&_logos_method$_ungrouped$GADDevice$systemVersion, (IMP*)&_logos_orig$_ungrouped$GADDevice$systemVersion);}Class _logos_class$_ungrouped$UADSMetricCommonTags = objc_getClass("UADSMetricCommonTags"); Class _logos_metaclass$_ungrouped$UADSMetricCommonTags = object_getClass(_logos_class$_ungrouped$UADSMetricCommonTags); { MSHookMessageEx(_logos_metaclass$_ungrouped$UADSMetricCommonTags, @selector(systemVersion), (IMP)&_logos_meta_method$_ungrouped$UADSMetricCommonTags$systemVersion, (IMP*)&_logos_meta_orig$_ungrouped$UADSMetricCommonTags$systemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$UADSMetricCommonTags, @selector(systemVersion), (IMP)&_logos_method$_ungrouped$UADSMetricCommonTags$systemVersion, (IMP*)&_logos_orig$_ungrouped$UADSMetricCommonTags$systemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$UADSMetricCommonTags, @selector(initWithCountryISO:platform:sdkVersion:systemVersion:testMode:metricTags:), (IMP)&_logos_method$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$, (IMP*)&_logos_orig$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$);}{ MSHookMessageEx(_logos_class$_ungrouped$UADSMetricCommonTags, @selector(setSystemVersion:), (IMP)&_logos_method$_ungrouped$UADSMetricCommonTags$setSystemVersion$, (IMP*)&_logos_orig$_ungrouped$UADSMetricCommonTags$setSystemVersion$);}Class _logos_class$_ungrouped$AFSDKChecksum = objc_getClass("AFSDKChecksum"); { MSHookMessageEx(_logos_class$_ungrouped$AFSDKChecksum, @selector(calculateV2ValueWithTimestamp:uid:systemVersion:firstLaunchDate:AFSDKVersion:isSimulator:isDevBuild:isJailBroken:isCounterValid:isDebuggerAttached:), (IMP)&_logos_method$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$, (IMP*)&_logos_orig$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$);}} }
-#line 1370 "/Users/zb/gitCode/tinder/tinderDylib/Logos/tinderDylib.xm"
+{Class _logos_class$_ungrouped$ASIdentifierManager = objc_getClass("ASIdentifierManager"); { MSHookMessageEx(_logos_class$_ungrouped$ASIdentifierManager, @selector(advertisingIdentifier), (IMP)&_logos_method$_ungrouped$ASIdentifierManager$advertisingIdentifier, (IMP*)&_logos_orig$_ungrouped$ASIdentifierManager$advertisingIdentifier);}Class _logos_class$_ungrouped$UIDevice = objc_getClass("UIDevice"); { MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(identifierForVendor), (IMP)&_logos_method$_ungrouped$UIDevice$identifierForVendor, (IMP*)&_logos_orig$_ungrouped$UIDevice$identifierForVendor);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(model), (IMP)&_logos_method$_ungrouped$UIDevice$model, (IMP*)&_logos_orig$_ungrouped$UIDevice$model);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(name), (IMP)&_logos_method$_ungrouped$UIDevice$name, (IMP*)&_logos_orig$_ungrouped$UIDevice$name);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(systemName), (IMP)&_logos_method$_ungrouped$UIDevice$systemName, (IMP*)&_logos_orig$_ungrouped$UIDevice$systemName);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(systemVersion), (IMP)&_logos_method$_ungrouped$UIDevice$systemVersion, (IMP*)&_logos_orig$_ungrouped$UIDevice$systemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(batteryLevel), (IMP)&_logos_method$_ungrouped$UIDevice$batteryLevel, (IMP*)&_logos_orig$_ungrouped$UIDevice$batteryLevel);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(batteryState), (IMP)&_logos_method$_ungrouped$UIDevice$batteryState, (IMP*)&_logos_orig$_ungrouped$UIDevice$batteryState);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(orientation), (IMP)&_logos_method$_ungrouped$UIDevice$orientation, (IMP*)&_logos_orig$_ungrouped$UIDevice$orientation);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(userInterfaceIdiom), (IMP)&_logos_method$_ungrouped$UIDevice$userInterfaceIdiom, (IMP*)&_logos_orig$_ungrouped$UIDevice$userInterfaceIdiom);}{ MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(serialNumber), (IMP)&_logos_method$_ungrouped$UIDevice$serialNumber, (IMP*)&_logos_orig$_ungrouped$UIDevice$serialNumber);}Class _logos_class$_ungrouped$NSJSONSerialization = objc_getClass("NSJSONSerialization"); Class _logos_metaclass$_ungrouped$NSJSONSerialization = object_getClass(_logos_class$_ungrouped$NSJSONSerialization); { MSHookMessageEx(_logos_metaclass$_ungrouped$NSJSONSerialization, @selector(dataWithJSONObject11:options:error:), (IMP)&_logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$, (IMP*)&_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject11$options$error$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$NSJSONSerialization, @selector(dataWithJSONObject:options:error:), (IMP)&_logos_meta_method$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$, (IMP*)&_logos_meta_orig$_ungrouped$NSJSONSerialization$dataWithJSONObject$options$error$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$NSJSONSerialization, @selector(JSONObjectWithData:options:error:), (IMP)&_logos_meta_method$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$, (IMP*)&_logos_meta_orig$_ungrouped$NSJSONSerialization$JSONObjectWithData$options$error$);}Class _logos_class$_ungrouped$WKWebView = objc_getClass("WKWebView"); { MSHookMessageEx(_logos_class$_ungrouped$WKWebView, @selector(loadRequest:), (IMP)&_logos_method$_ungrouped$WKWebView$loadRequest$, (IMP*)&_logos_orig$_ungrouped$WKWebView$loadRequest$);}{ MSHookMessageEx(_logos_class$_ungrouped$WKWebView, @selector(evaluateJavaScript:completionHandler:), (IMP)&_logos_method$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$, (IMP*)&_logos_orig$_ungrouped$WKWebView$evaluateJavaScript$completionHandler$);}Class _logos_class$_ungrouped$NSBundle = objc_getClass("NSBundle"); { MSHookMessageEx(_logos_class$_ungrouped$NSBundle, @selector(infoDictionary), (IMP)&_logos_method$_ungrouped$NSBundle$infoDictionary, (IMP*)&_logos_orig$_ungrouped$NSBundle$infoDictionary);}Class _logos_class$_ungrouped$NSLocale = objc_getClass("NSLocale"); Class _logos_metaclass$_ungrouped$NSLocale = object_getClass(_logos_class$_ungrouped$NSLocale); { MSHookMessageEx(_logos_metaclass$_ungrouped$NSLocale, @selector(currentLocale), (IMP)&_logos_meta_method$_ungrouped$NSLocale$currentLocale, (IMP*)&_logos_meta_orig$_ungrouped$NSLocale$currentLocale);}{ MSHookMessageEx(_logos_class$_ungrouped$NSLocale, @selector(localeIdentifier), (IMP)&_logos_method$_ungrouped$NSLocale$localeIdentifier, (IMP*)&_logos_orig$_ungrouped$NSLocale$localeIdentifier);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$NSLocale, @selector(preferredLanguages), (IMP)&_logos_meta_method$_ungrouped$NSLocale$preferredLanguages, (IMP*)&_logos_meta_orig$_ungrouped$NSLocale$preferredLanguages);}Class _logos_class$_ungrouped$NSTimeZone = objc_getClass("NSTimeZone"); Class _logos_metaclass$_ungrouped$NSTimeZone = object_getClass(_logos_class$_ungrouped$NSTimeZone); { MSHookMessageEx(_logos_metaclass$_ungrouped$NSTimeZone, @selector(localTimeZone), (IMP)&_logos_meta_method$_ungrouped$NSTimeZone$localTimeZone, (IMP*)&_logos_meta_orig$_ungrouped$NSTimeZone$localTimeZone);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$NSTimeZone, @selector(systemTimeZone), (IMP)&_logos_meta_method$_ungrouped$NSTimeZone$systemTimeZone, (IMP*)&_logos_meta_orig$_ungrouped$NSTimeZone$systemTimeZone);}Class _logos_class$_ungrouped$BugsnagDevice = objc_getClass("BugsnagDevice"); { MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(jailbroken), (IMP)&_logos_method$_ungrouped$BugsnagDevice$jailbroken, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$jailbroken);}{ MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(locale), (IMP)&_logos_method$_ungrouped$BugsnagDevice$locale, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$locale);}{ MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(modelNumber), (IMP)&_logos_method$_ungrouped$BugsnagDevice$modelNumber, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$modelNumber);}{ MSHookMessageEx(_logos_class$_ungrouped$BugsnagDevice, @selector(setOsVersion:), (IMP)&_logos_method$_ungrouped$BugsnagDevice$setOsVersion$, (IMP*)&_logos_orig$_ungrouped$BugsnagDevice$setOsVersion$);}Class _logos_class$_ungrouped$AppsFlyerUtils = objc_getClass("AppsFlyerUtils"); Class _logos_metaclass$_ungrouped$AppsFlyerUtils = object_getClass(_logos_class$_ungrouped$AppsFlyerUtils); { MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(isJailbrokenWithSkipAdvancedJailbreakValidation:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$isJailbrokenWithSkipAdvancedJailbreakValidation$);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(isVPNConnected), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$isVPNConnected, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$isVPNConnected);}{ MSHookMessageEx(_logos_metaclass$_ungrouped$AppsFlyerUtils, @selector(shouldCachePurchaseEventWithStatusCode:), (IMP)&_logos_meta_method$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$, (IMP*)&_logos_meta_orig$_ungrouped$AppsFlyerUtils$shouldCachePurchaseEventWithStatusCode$);}Class _logos_class$_ungrouped$CTCarrier = objc_getClass("CTCarrier"); { MSHookMessageEx(_logos_class$_ungrouped$CTCarrier, @selector(carrierName), (IMP)&_logos_method$_ungrouped$CTCarrier$carrierName, (IMP*)&_logos_orig$_ungrouped$CTCarrier$carrierName);}Class _logos_class$_ungrouped$NSProcessInfo = objc_getClass("NSProcessInfo"); { MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(physicalMemory), (IMP)&_logos_method$_ungrouped$NSProcessInfo$physicalMemory, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$physicalMemory);}{ MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(isLowPowerModeEnabled), (IMP)&_logos_method$_ungrouped$NSProcessInfo$isLowPowerModeEnabled, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$isLowPowerModeEnabled);}{ MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(operatingSystemVersion), (IMP)&_logos_method$_ungrouped$NSProcessInfo$operatingSystemVersion, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$NSProcessInfo, @selector(operatingSystemVersionString), (IMP)&_logos_method$_ungrouped$NSProcessInfo$operatingSystemVersionString, (IMP*)&_logos_orig$_ungrouped$NSProcessInfo$operatingSystemVersionString);}Class _logos_class$_ungrouped$UIScreen = objc_getClass("UIScreen"); { MSHookMessageEx(_logos_class$_ungrouped$UIScreen, @selector(brightness), (IMP)&_logos_method$_ungrouped$UIScreen$brightness, (IMP*)&_logos_orig$_ungrouped$UIScreen$brightness);}Class _logos_class$_ungrouped$GADOMIDDevice = objc_getClass("GADOMIDDevice"); Class _logos_metaclass$_ungrouped$GADOMIDDevice = object_getClass(_logos_class$_ungrouped$GADOMIDDevice); { MSHookMessageEx(_logos_metaclass$_ungrouped$GADOMIDDevice, @selector(deviceOsVersion), (IMP)&_logos_meta_method$_ungrouped$GADOMIDDevice$deviceOsVersion, (IMP*)&_logos_meta_orig$_ungrouped$GADOMIDDevice$deviceOsVersion);}Class _logos_class$_ungrouped$USRVDevice = objc_getClass("USRVDevice"); Class _logos_metaclass$_ungrouped$USRVDevice = object_getClass(_logos_class$_ungrouped$USRVDevice); { MSHookMessageEx(_logos_metaclass$_ungrouped$USRVDevice, @selector(getOsVersion), (IMP)&_logos_meta_method$_ungrouped$USRVDevice$getOsVersion, (IMP*)&_logos_meta_orig$_ungrouped$USRVDevice$getOsVersion);}Class _logos_class$_ungrouped$GADDevice = objc_getClass("GADDevice"); { MSHookMessageEx(_logos_class$_ungrouped$GADDevice, @selector(systemVersion), (IMP)&_logos_method$_ungrouped$GADDevice$systemVersion, (IMP*)&_logos_orig$_ungrouped$GADDevice$systemVersion);}Class _logos_class$_ungrouped$UADSMetricCommonTags = objc_getClass("UADSMetricCommonTags"); Class _logos_metaclass$_ungrouped$UADSMetricCommonTags = object_getClass(_logos_class$_ungrouped$UADSMetricCommonTags); { MSHookMessageEx(_logos_metaclass$_ungrouped$UADSMetricCommonTags, @selector(systemVersion), (IMP)&_logos_meta_method$_ungrouped$UADSMetricCommonTags$systemVersion, (IMP*)&_logos_meta_orig$_ungrouped$UADSMetricCommonTags$systemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$UADSMetricCommonTags, @selector(systemVersion), (IMP)&_logos_method$_ungrouped$UADSMetricCommonTags$systemVersion, (IMP*)&_logos_orig$_ungrouped$UADSMetricCommonTags$systemVersion);}{ MSHookMessageEx(_logos_class$_ungrouped$UADSMetricCommonTags, @selector(initWithCountryISO:platform:sdkVersion:systemVersion:testMode:metricTags:), (IMP)&_logos_method$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$, (IMP*)&_logos_orig$_ungrouped$UADSMetricCommonTags$initWithCountryISO$platform$sdkVersion$systemVersion$testMode$metricTags$);}{ MSHookMessageEx(_logos_class$_ungrouped$UADSMetricCommonTags, @selector(setSystemVersion:), (IMP)&_logos_method$_ungrouped$UADSMetricCommonTags$setSystemVersion$, (IMP*)&_logos_orig$_ungrouped$UADSMetricCommonTags$setSystemVersion$);}Class _logos_class$_ungrouped$AFSDKChecksum = objc_getClass("AFSDKChecksum"); { MSHookMessageEx(_logos_class$_ungrouped$AFSDKChecksum, @selector(calculateV2ValueWithTimestamp:uid:systemVersion:firstLaunchDate:AFSDKVersion:isSimulator:isDevBuild:isJailBroken:isCounterValid:isDebuggerAttached:), (IMP)&_logos_method$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$, (IMP*)&_logos_orig$_ungrouped$AFSDKChecksum$calculateV2ValueWithTimestamp$uid$systemVersion$firstLaunchDate$AFSDKVersion$isSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$);}{ MSHookMessageEx(_logos_class$_ungrouped$AFSDKChecksum, @selector(calculateV2SanityFlagsWithIsSimulator:isDevBuild:isJailBroken:isCounterValid:isDebuggerAttached:), (IMP)&_logos_method$_ungrouped$AFSDKChecksum$calculateV2SanityFlagsWithIsSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$, (IMP*)&_logos_orig$_ungrouped$AFSDKChecksum$calculateV2SanityFlagsWithIsSimulator$isDevBuild$isJailBroken$isCounterValid$isDebuggerAttached$);}Class _logos_class$_ungrouped$_TtC9TinderKit7TUIView = objc_getClass("_TtC9TinderKit7TUIView"); { MSHookMessageEx(_logos_class$_ungrouped$_TtC9TinderKit7TUIView, @selector(traitCollectionDidChange:), (IMP)&_logos_method$_ungrouped$_TtC9TinderKit7TUIView$traitCollectionDidChange$, (IMP*)&_logos_orig$_ungrouped$_TtC9TinderKit7TUIView$traitCollectionDidChange$);}Class _logos_class$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController = objc_getClass("_TtC13TinderAuthSMS30EnterPhoneNumberViewController"); { MSHookMessageEx(_logos_class$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController, @selector(overrideChildrenContentSizeCategories), (IMP)&_logos_method$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories, (IMP*)&_logos_orig$_ungrouped$_TtC13TinderAuthSMS30EnterPhoneNumberViewController$overrideChildrenContentSizeCategories);}Class _logos_class$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController = objc_getClass("_TtC4Auth29GatedSMSCaptchaViewController"); { MSHookMessageEx(_logos_class$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController, @selector(viewControllerNavigationKey), (IMP)&_logos_method$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey, (IMP*)&_logos_orig$_ungrouped$_TtC4Auth29GatedSMSCaptchaViewController$viewControllerNavigationKey);}Class _logos_class$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver = objc_getClass("_TtC11CaptchaView21ArkoseMessageReceiver"); { MSHookMessageEx(_logos_class$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver, @selector(loadRequest:), (IMP)&_logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$loadRequest$, (IMP*)&_logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$loadRequest$);}{ MSHookMessageEx(_logos_class$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver, @selector(evaluateJavaScript:completionHandler:), (IMP)&_logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$evaluateJavaScript$completionHandler$, (IMP*)&_logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$evaluateJavaScript$completionHandler$);}{ MSHookMessageEx(_logos_class$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver, @selector(userContentController:didReceiveScriptMessage:), (IMP)&_logos_method$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$userContentController$didReceiveScriptMessage$, (IMP*)&_logos_orig$_ungrouped$_TtC11CaptchaView21ArkoseMessageReceiver$userContentController$didReceiveScriptMessage$);}} }
+#line 1463 "/Users/zb/GitHub/tinder/tinderDylib/Logos/tinderDylib.xm"

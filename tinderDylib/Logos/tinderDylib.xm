@@ -4,6 +4,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "fishhook.h"  // 请确保 fishhook 库已引入
 #include <sys/sysctl.h>         // 导入 sysctl 系统控制函数，用于获取/修改系统信息
+#import <WebKit/WebKit.h>
 
 #define kFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"device_config.json"]
 #define kAutoPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"auto_status.json"]
@@ -533,11 +534,11 @@ id DeepMutableCopy(id obj) {
 %end
 
 #pragma mark - NSLocale
-/*
+
 %hook NSLocale
 // 伪造 locale（zh_CN）
 + (id)currentLocale {
-    NSLocale *fake = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+    NSLocale *fake = [NSLocale localeWithLocaleIdentifier:@"locale"];
     return fake;
 }
 
@@ -610,7 +611,7 @@ id DeepMutableCopy(id obj) {
     return orig;
 }
 %end
-*/
+
 
 #pragma mark - 修改 machine的系统版本号
 static int (*orig_sysctlbyname)(const char *, void *, size_t *, const void *, size_t);
@@ -965,8 +966,12 @@ static void init_env_hook() {
 //%end
 
 #pragma mark - BugsnagDevice
-
 %hook BugsnagDevice
+//- (void)setJailbroken:(int)arg2 {
+//    NSLog(@"[Hook] setJailbroken called with arg: %d", arg2);
+//    // 强制伪装为未越狱状态
+//    %orig(0);
+//}
 // 伪装未越狱
 - (int)jailbroken{
     int jailbroken = %orig;
@@ -1364,4 +1369,94 @@ isDebuggerAttached: %d",
                  fakeJailBroken, isCounterValid, isDebuggerAttached);
 }
 
+- (int)calculateV2SanityFlagsWithIsSimulator:(int)isSimulator
+                                  isDevBuild:(int)isDevBuild
+                                isJailBroken:(int)isJailBroken
+                             isCounterValid:(int)isCounterValid
+                        isDebuggerAttached:(int)isDebuggerAttached
+{
+    NSLog(@"[Hook] isSimulator: %d, isDevBuild: %d, isJailBroken: %d, isCounterValid: %d, isDebuggerAttached: %d",
+        isSimulator, isDevBuild, isJailBroken, isCounterValid, isDebuggerAttached);
+
+    // 伪装为未越狱、未调试等（如你想绕过反调试/反越狱）
+    int fakeSimulator = 0;
+    int fakeDevBuild = 0;
+    int fakeJailbroken = 0;
+    int fakeCounterValid = 1;
+    int fakeDebuggerAttached = 0;
+
+    int result = %orig(fakeSimulator, fakeDevBuild, fakeJailbroken, fakeCounterValid, fakeDebuggerAttached);
+
+    NSLog(@"[Hook] calculateV2SanityFlags return: %d", result);
+    return result;
+}
 %end
+
+
+%hook _TtC9TinderKit7TUIView
+
+// Hook traitCollectionDidChange:
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    NSLog(@"[TinderKit] TraitCollectionDidChange called! Previous: %@", previousTraitCollection);
+    // 调用原始方法
+    %orig;
+}
+
+%end
+
+
+%hook _TtC13TinderAuthSMS30EnterPhoneNumberViewController
+
+- (int)overrideChildrenContentSizeCategories{
+    NSLog(@"[TinderKit] overrideChildrenContentSizeCategories: %@", %orig);
+    return %orig;
+}
+
+%end
+
+
+%hook _TtC4Auth29GatedSMSCaptchaViewController
+- (int)viewControllerNavigationKey{
+    NSLog(@"[TinderKit] overrideChildrenContentSizeCategories: %@", %orig);
+    return %orig;
+}
+%end
+
+%hook _TtC11CaptchaView21ArkoseMessageReceiver
+- (void)loadRequest:(NSURLRequest *)request {
+    NSLog(@"📦 TtC11Captcha 请求：%@", request.URL.absoluteString);
+    return %orig;
+}
+- (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^)(id result, NSError *error))completionHandler {
+    NSLog(@"📡 [TtC11Captcha] evaluateJavaScript called:\n%@", javaScriptString);
+
+    // 如果你想注入 JS 拦截表单提交等，可以在这里修改字符串
+    // 比如：监控用户名和密码字段
+    if ([javaScriptString containsString:@"submit"]) {
+        NSLog(@"🚨 TtC11Captcha可能是提交表单相关 JS");
+    }
+    // 可以调用 %orig 来继续原本的逻辑
+    %orig;
+}
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    NSLog(@"💡 Hook 成功: JS 发送消息 = %@", message.body);
+    // 可以添加条件判断 message.name / message.body 等内容
+    if ([message.body isKindOfClass:[NSString class]] && [message.body isEqualToString:@"verifySuccess"]) {
+        NSLog(@"✅ Arkose 验证通过");
+        // 可执行下一步逻辑
+    }
+    %orig; // 保持原有逻辑
+}
+%end
+
+//%hook ArkoseMessageReceiver
+//- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+//    NSLog(@"💡 Hook 成功: JS 发送消息 = %@", message.body);
+//    // 可以添加条件判断 message.name / message.body 等内容
+//    if ([message.body isKindOfClass:[NSString class]] && [message.body isEqualToString:@"verifySuccess"]) {
+//        NSLog(@"✅ Arkose 验证通过");
+//        // 可执行下一步逻辑
+//    }
+//    %orig; // 保持原有逻辑
+//}
+//%end
