@@ -705,7 +705,8 @@
         (__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
         (__bridge id)kSecAttrService: kService,
         (__bridge id)kSecAttrAccount: account,
-        (__bridge id)kSecValueData: valueData
+        (__bridge id)kSecValueData: valueData,
+        (__bridge id)kSecAttrAccessible: (__bridge id)kSecAttrAccessibleAfterFirstUnlock,
     };
 
     // 先尝试更新
