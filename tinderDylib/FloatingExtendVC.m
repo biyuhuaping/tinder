@@ -981,7 +981,8 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         (__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
         (__bridge id)kSecAttrService: kService,
         (__bridge id)kSecAttrAccount: account,
-        (__bridge id)kSecValueData: valueData
+        (__bridge id)kSecValueData: valueData,
+        (__bridge id)kSecAttrAccessible: (__bridge id)kSecAttrAccessibleAfterFirstUnlock,
     };
 
     // 先尝试更新
