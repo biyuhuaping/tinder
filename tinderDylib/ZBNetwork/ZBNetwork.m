@@ -57,11 +57,13 @@ static ZBNetwork *manager = nil;
             NSLog(@"❌ data 是 nil");
         }
         NSLog(@"👇👇👇👇👇👇👇👇👇👇\n地址：%@\n入参：%@\n出参：%@",request.URL, param, raw);
-        if (error) {
-            failure(error);
-        } else {
-            success(data, response);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                failure(error);
+            } else {
+                success(data, response);
+            }
+        });
     }] resume];
 }
 
@@ -69,9 +71,24 @@ static ZBNetwork *manager = nil;
     NSURL *url = [self fullURLWithPath:path];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
-    if (param) {
-        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:param options:0 error:nil];
-    }
+    // multipart/form-data 需要 boundary
+    NSString *boundary = [NSString stringWithFormat:@"Boundary-%@", NSUUID.UUID.UUIDString];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    // 构建 multipart body
+    NSMutableData *body = [NSMutableData data];
+    [param enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", obj] dataUsingEncoding:NSUTF8StringEncoding]];
+    }];
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    request.HTTPBody = body;
+//    if (param) {
+//        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:param options:0 error:nil];
+//    }
 //    [request setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
 
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -83,11 +100,13 @@ static ZBNetwork *manager = nil;
             NSLog(@"❌ data 是 nil");
         }
         NSLog(@"👇👇👇👇👇👇👇👇👇👇\n地址：%@\n入参：%@\n出参：%@",url, param, raw);
-        if (error) {
-            failure(error);
-        } else {
-            success(data, response);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                failure(error);
+            } else {
+                success(data, response);
+            }
+        });
     }] resume];
 }
 

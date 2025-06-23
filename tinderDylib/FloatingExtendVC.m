@@ -155,7 +155,12 @@
     
     [ZBNetwork POST:@"/api/device/bindCode" param:@{@"device_str" : encStr} success:^(NSData * _Nullable data, NSURLResponse * _Nullable response) {
 //        NSLog(@"%@", response);
-        NSDictionary *dicData = response;
+        NSError *jsonError = nil;
+        NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError) {
+            NSLog(@"❌ JSON 解析失败: %@", jsonError.localizedDescription);
+            return;
+        }
         NSString *dataStr = dicData[@"data"];
         if (dataStr.length) {
             NSString *jsonStr = [AESUtil aesDecrypt:dataStr];//解析密文得到json字符串
