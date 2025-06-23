@@ -126,6 +126,9 @@
 
 //        NSDictionary *dicData = response;
         NSString *dataStr = dicData[@"data"];
+        if (!dataStr.length) {
+            return;
+        }
         NSString *jsonStr = [AESUtil aesDecrypt:dataStr];//解析密文得到json字符串
         NSDictionary *dict = [Tools convert2DictionaryWithJSONString:jsonStr];
 //        NSLog(@"codeinfo：%@", dict);

@@ -49,6 +49,14 @@ static ZBNetwork *manager = nil;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:components.URL];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSString *raw;
+        if (data) {
+            raw = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"🔍 原始返回数据 string: %@", raw);
+        } else {
+            NSLog(@"❌ data 是 nil");
+        }
+        NSLog(@"👇👇👇👇👇👇👇👇👇👇\n地址：%@\n入参：%@\n出参：%@",request.URL, param, raw);
         if (error) {
             failure(error);
         } else {
@@ -61,21 +69,10 @@ static ZBNetwork *manager = nil;
     NSURL *url = [self fullURLWithPath:path];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
-
-    NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
-    if (error) {
-        NSLog(@"❌ JSON 序列化失败：%@", error);
-        failure(error);
-        return;
+    if (param) {
+        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:param options:0 error:nil];
     }
-    request.HTTPBody = jsonData;
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    if (param) {
-//        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:param options:0 error:nil];
-//    }
-    
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [request setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
 
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *raw;

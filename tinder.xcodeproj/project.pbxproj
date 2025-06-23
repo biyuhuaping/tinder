@@ -134,7 +134,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9E3D333A2E07FF670014A827 /* Exceptions for "tinder" folder in "tinder" target */ = {
+		39625A3A2E094EB20046C7AE /* Exceptions for "tinder" folder in "tinder" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -147,7 +147,7 @@
 		9EA50D992DA19054003DFBA7 /* tinder */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				9E3D333A2E07FF670014A827 /* Exceptions for "tinder" folder in "tinder" target */,
+				39625A3A2E094EB20046C7AE /* Exceptions for "tinder" folder in "tinder" target */,
 			);
 			path = tinder;
 			sourceTree = "<group>";
