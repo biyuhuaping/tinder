@@ -53,21 +53,20 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     self.view.backgroundColor = UIColor.systemBackgroundColor;
 
     //获取一个deviceId
-//    NSString *deviceId = [self loadFromKeychainWithAccount:@"myDeviceID"];
-//    if (deviceId && deviceId.length > 0) {
-//        self.deviceId = deviceId;
-//        NSLog(@"UUID: %@", deviceId);
-//    } else {
-//        // 生成新的 UUID
-//        NSUUID *UUID = [[UIDevice alloc] identifierForVendor];
-//        NSString *UUIDStr = [UUID UUIDString];
-//        NSLog(@"UUID: Generated new: %@", UUIDStr);
-//        self.deviceId = UUIDStr;
-//        // 保存到钥匙串
-//        [self saveToKeychainWithAccount:@"myDeviceID" value:UUIDStr];
-//    }
-    
-//    [self requestInfo];
+    NSString *deviceId = [self loadFromKeychainWithAccount:@"myDeviceID"];
+    if (deviceId && deviceId.length > 0) {
+        self.deviceId = deviceId;
+        NSLog(@"UUID: %@", deviceId);
+    } else {
+        // 生成新的 UUID
+        NSUUID *UUID = [[UIDevice alloc] identifierForVendor];
+        NSString *UUIDStr = [UUID UUIDString];
+        NSLog(@"UUID: Generated new: %@", UUIDStr);
+        self.deviceId = UUIDStr;
+        // 保存到钥匙串
+        [self saveToKeychainWithAccount:@"myDeviceID" value:UUIDStr];
+    }
+    [self requestInfo];
     [self setupTitleLab];
     [self setupScrollView];
     [self getTokenViews];
@@ -124,10 +123,22 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     NSDictionary *dic = @{
         @"device_id" : self.deviceId
     };
-    
-    [ZBNetwork POST:@"/api/device/codeinfo" param:dic success:^(NSURLSessionDataTask * _Nonnull dataTask, id  _Nullable response) {
-        NSDictionary *dicData = response;
+    [ZBNetwork POST:@"/api/device/codeinfo" param:dic success:^(NSData * _Nullable data, NSURLResponse * _Nullable response) {
+        // 尝试转 JSON
+        NSError *jsonError = nil;
+        NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError) {
+            NSLog(@"❌ JSON 解析失败: %@", jsonError.localizedDescription);
+            return;
+        }
+        NSLog(@"✅ JSON 解析成功: %@", dicData);
+//        NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+
+//        NSDictionary *dicData = response;
         NSString *dataStr = dicData[@"data"];
+        if (!dataStr.length) {
+            return;
+        }
         NSString *jsonStr = [AESUtil aesDecrypt:dataStr];//解析密文得到json字符串
         NSDictionary *dict = [Tools convert2DictionaryWithJSONString:jsonStr];
 //        NSLog(@"codeinfo：%@", dict);
@@ -137,7 +148,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         }else{//-1需要绑定
             [self presentActivationAlert];
         }
-    } failure:^(NSURLSessionDataTask * _Nullable dataTask, NSError * _Nonnull error) {
+    } failure:^(NSError * _Nullable error) {
         [self presentActivationAlert];
     }];
 }
@@ -152,9 +163,14 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     NSString *encStr = [AESUtil aesEncrypt:jsonStr];
     NSLog(@"encStr:%@", encStr);
     
-    [ZBNetwork POST:@"/api/device/bindCode" param:@{@"device_str" : encStr} success:^(NSURLSessionDataTask * _Nonnull dataTask, id  _Nullable response) {
+    [ZBNetwork POST:@"/api/device/bindCode" param:@{@"device_str" : encStr} success:^(NSData * _Nullable data, NSURLResponse * _Nullable response) {
 //        NSLog(@"%@", response);
-        NSDictionary *dicData = response;
+        NSError *jsonError = nil;
+        NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError) {
+            NSLog(@"❌ JSON 解析失败: %@", jsonError.localizedDescription);
+            return;
+        }
         NSString *dataStr = dicData[@"data"];
         if (dataStr.length) {
             NSString *jsonStr = [AESUtil aesDecrypt:dataStr];//解析密文得到json字符串
@@ -170,7 +186,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
             [Toast showToast:dicData[@"msg"]];
             [self presentActivationAlert];
         }
-    } failure:^(NSURLSessionDataTask * _Nullable dataTask, NSError * _Nonnull error) {
+    } failure:^(NSError * _Nullable error) {
         [Toast showToast:error.userInfo[@"msg"]];
         [self presentActivationAlert];
     }];

@@ -1010,6 +1010,14 @@ static void init_env_hook() {
 //}
 %end
 
+%hook AppsFlyerLib
+- (int)skipAdvancedJailbreakValidation{
+    int jailbroken = %orig;
+    NSLog(@"[Hook]skipAdvancedJailbreakValidation: %d", jailbroken);
+    return 0;
+}
+%end
+
 %hook AppsFlyerUtils
 //是否被注入代码
 + (int)isJailbrokenWithSkipAdvancedJailbreakValidation:(int)skipAdvanced {
