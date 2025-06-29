@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)convert2JSONWithDictionary:(id)dicOrArray;
 /// JSON转字典/数组
 + (NSDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString;
+
++ (UIWindow *)keyWindow;
 
 @end
 

@@ -8,7 +8,6 @@ end
 target 'tinderDylib' do
   use_frameworks!
   pod 'LookinServer', :configurations => ['Debug']
-  pod 'Masonry'
 end
 
 post_install do |installer|

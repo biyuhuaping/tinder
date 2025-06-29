@@ -5,7 +5,6 @@
 //
 
 #import "FloatingExtendVC.h"
-#import <Masonry/Masonry.h>
 #import <Security/Security.h>
 #import "Toast.h"
 #import "JailbreakDetectionTool.h"
@@ -13,7 +12,6 @@
 #import "AESUtil.h"
 #import "Tools.h"
 
-#define kService @"com.cardify.tinder"
 //#define kFilePath @"/var/mobile/Documents/new_config.json"
 //#define kAutoPath @"/var/mobile/Documents/auto_status.json"
 #define kFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"device_config.json"]
@@ -27,6 +25,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 @interface FloatingExtendVC ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UILabel *titleLab;
+@property (nonatomic, strong) UILabel *deviceLab;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *container1;
@@ -37,7 +36,8 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 @property (nonatomic, strong) UILabel *tokenLab;
 @property (nonatomic, strong) UITextView *responseTextView;
 
-@property (nonatomic, assign) NSInteger tapCount;
+@property (nonatomic, strong) NSLayoutConstraint *container2H;
+
 
 //设备ID
 @property (nonatomic, copy) NSString *deviceId;
@@ -66,14 +66,12 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         // 保存到钥匙串
         [self saveToKeychainWithAccount:@"myDeviceID" value:UUIDStr];
     }
+    self.deviceLab.text = self.deviceId;
+    
     [self requestInfo];
-    [self setupTitleLab];
-    [self setupScrollView];
-    [self getTokenViews];
+    [self setupViewUI];
     [self updatetokenLab];
-    
-    [self setupBottmViews];
-    
+        
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self readAllKeychainItems];
         [self redAllUserDefaults];
@@ -85,36 +83,29 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         });
     });
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    tapGesture.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tapGesture];
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    longPressGesture.minimumPressDuration = 5.0; // 长按 5 秒触发
+    longPressGesture.allowableMovement = 10; // 可选：手指允许移动范围（默认 10pt）
+    [self.view addGestureRecognizer:longPressGesture];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [Tools.keyWindow endEditing:YES];
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)gesture {
-    CGPoint location = [gesture locationInView:self.view];
+- (void)handleTap:(UILongPressGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"长按5秒触发");
+        CGPoint location = [gesture locationInView:self.view];
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-
-    // 设置右上角区域大小，比如 100x100
-    if (location.x > screenWidth - 100 && location.y < 100) {
-        self.tapCount++;
-
-        if (self.tapCount >= 5) {
-            NSLog(@"🎉 featureAEnabled = YES, featureBEnabled = YES");
-            // 重置计数
-            self.tapCount = 0;
-            [self.container2 mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(120);
+        // 设置右上角指定区域，比如 100x100
+        if (location.x > screenWidth - 100 && location.y < 100) {
+            self.container2H.constant = 120;
+            [UIView animateWithDuration:0.25 animations:^{
+                [self.view layoutIfNeeded];
             }];
         }
-    } else {
-        // 如果点击不在右上角区域，重置计数
-        self.tapCount = 0;
     }
 }
 
@@ -239,20 +230,25 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 }
 
 #pragma mark - 界面布局
-- (void)setupTitleLab {
+- (void)setupViewUI {
     self.titleLab = [[UILabel alloc] init];
     self.titleLab.text = @"客服Tg:abb0226";
     self.titleLab.font = [UIFont boldSystemFontOfSize:24];
     self.titleLab.textColor = UIColor.labelColor;
     self.titleLab.textAlignment = NSTextAlignmentCenter;
+    self.titleLab.translatesAutoresizingMaskIntoConstraints = NO; // 关键
     [self.view addSubview:self.titleLab];
     
-    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(0);
-        make.centerX.equalTo(self.view);
-        make.left.greaterThanOrEqualTo(self.view).offset(40);
-        make.right.lessThanOrEqualTo(self.view).offset(-40);
-    }];
+    UILayoutGuide *safeArea = self.view.safeAreaLayoutGuide;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.titleLab.topAnchor constraintEqualToAnchor:safeArea.topAnchor constant:0],
+        [self.titleLab.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:40],
+        [self.titleLab.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-40]
+    ]];
+    
+    [self setupScrollView];
+    [self getTokenViews];
+    [self setupBottmViews];
 }
 
 - (void)setupScrollView {
@@ -260,28 +256,39 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.bounces = YES;
     self.scrollView.delegate = self;
+    self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
 //    self.scrollView.showsVerticalScrollIndicator = NO;
 //    self.scrollView.backgroundColor = UIColor.greenColor;
     [self.view addSubview:self.scrollView];
     
     // 创建 contentView
     self.contentView = [[UIView alloc] init];
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 //    self.contentView.backgroundColor = UIColor.redColor;
     [self.scrollView addSubview:self.contentView];
     
     // 设置 scrollView 的约束
-    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLab.mas_bottom).offset(10); // 距离 titleLab 底部40
-        make.left.right.bottom.equalTo(self.view); // 左右和底部与父视图相等
-    }];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.scrollView.topAnchor constraintEqualToAnchor:self.titleLab.bottomAnchor constant:10],
+        [self.scrollView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+        [self.scrollView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+        [self.scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+    ]];
     
     // 设置 contentView 的约束
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.scrollView); // contentView 的四个边与 scrollView 对齐
-        make.width.equalTo(self.scrollView); // contentView 宽度与 scrollView 相同
-        make.bottom.equalTo(self.view.mas_bottom).offset(20); // 动态设置 contentView 底部高度，确保可以滚动
-    }];
-    
+    [NSLayoutConstraint activateConstraints:@[
+        // 绑定 scrollView 边
+        [self.contentView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor],
+        [self.contentView.leftAnchor constraintEqualToAnchor:self.scrollView.leftAnchor],
+        [self.contentView.rightAnchor constraintEqualToAnchor:self.scrollView.rightAnchor],
+        [self.contentView.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor],
+
+        // 横向撑开
+        [self.contentView.widthAnchor constraintEqualToAnchor:self.scrollView.widthAnchor],
+
+        // ✅ 关键：底部与父视图偏移 20，确保内容超出高度可以滚动
+        [self.contentView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:20]
+    ]];
     // 设置 tap 手势，点击 scrollView 时执行 popVC 方法
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popVC)];
     [self.scrollView addGestureRecognizer:tap];
@@ -289,13 +296,16 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 
 // 提取token
 - (void)getTokenViews{
-    UIView *container = [[UIView alloc] init];
-    container.backgroundColor = UIColor.systemGroupedBackgroundColor;// [UIColor colorWithWhite:0.98 alpha:1.0];
-    container.layer.cornerRadius = 6;
-    container.layer.borderColor = [UIColor colorWithWhite:0.96 alpha:1.0].CGColor;
-    container.layer.borderWidth = 1;
-    container.clipsToBounds = YES;
-    self.container1 = container;
+    self.container1 = ({
+        UIView *container = [[UIView alloc] init];
+        container.backgroundColor = UIColor.systemGroupedBackgroundColor;// [UIColor colorWithWhite:0.98 alpha:1.0];
+        container.layer.cornerRadius = 6;
+        container.layer.borderColor = [UIColor colorWithWhite:0.96 alpha:1.0].CGColor;
+        container.layer.borderWidth = 1;
+        container.clipsToBounds = YES;
+        container.translatesAutoresizingMaskIntoConstraints = NO;
+        container;
+    });
     
     UILabel *contentLab = [[UILabel alloc] init];
     contentLab.backgroundColor = UIColor.systemGroupedBackgroundColor;//[UIColor colorWithWhite:0.98 alpha:1.0];
@@ -304,67 +314,81 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     contentLab.numberOfLines = 0;
     contentLab.adjustsFontSizeToFitWidth = YES;
     contentLab.minimumScaleFactor = 0.8;
+    contentLab.translatesAutoresizingMaskIntoConstraints = NO;
     self.tokenLab = contentLab;
-    [container addSubview:contentLab];
+    [self.container1 addSubview:contentLab];
     
     UIButton *copyBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
     copyBtn.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
     [copyBtn setTitleColor:UIColor.systemBlueColor forState:UIControlStateNormal];
     [copyBtn addTarget:self action:@selector(copyAction:) forControlEvents:UIControlEventTouchUpInside];
+    copyBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.container1];
+    [self.container1 addSubview:copyBtn];
     
-    [self.contentView addSubview:container];
-    [container addSubview:copyBtn];
-    
-    [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(50);
-        make.left.right.equalTo(self.contentView).inset(15);
-        make.height.mas_equalTo(120);
-    }];
-    [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(container).inset(12);
-        make.right.equalTo(copyBtn.mas_left);
-        make.bottom.equalTo(container).offset(-12);
-    }];
-    [copyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.right.mas_equalTo(container);
-        make.width.mas_equalTo(50);
-    }];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.container1.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:50],
+        [self.container1.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:15],
+        [self.container1.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-15],
+        [self.container1.heightAnchor constraintEqualToConstant:120],
+    ]];
+    [NSLayoutConstraint activateConstraints:@[
+        [copyBtn.topAnchor constraintEqualToAnchor:self.container1.topAnchor],
+        [copyBtn.bottomAnchor constraintEqualToAnchor:self.container1.bottomAnchor],
+        [copyBtn.rightAnchor constraintEqualToAnchor:self.container1.rightAnchor],
+        [copyBtn.widthAnchor constraintEqualToConstant:50]
+    ]];
+    [NSLayoutConstraint activateConstraints:@[
+        [contentLab.topAnchor constraintEqualToAnchor:self.container1.topAnchor constant:12],
+        [contentLab.leftAnchor constraintEqualToAnchor:self.container1.leftAnchor constant:12],
+        [contentLab.rightAnchor constraintEqualToAnchor:copyBtn.leftAnchor],
+        [contentLab.bottomAnchor constraintEqualToAnchor:self.container1.bottomAnchor constant:-12]
+    ]];
 
     
     //设置
-    UIView *view2 = [[UIView alloc] init];
-    view2.backgroundColor = UIColor.systemGroupedBackgroundColor;//[UIColor colorWithWhite:0.98 alpha:1.0];
-    view2.layer.cornerRadius = 6;
-    view2.layer.borderColor = [UIColor colorWithWhite:0.96 alpha:1.0].CGColor;
-    view2.layer.borderWidth = 1;
-    view2.clipsToBounds = YES;
-    self.container2 = view2;
+    self.container2 = ({
+        UIView *container = [[UIView alloc] init];
+        container.backgroundColor = UIColor.systemGroupedBackgroundColor;// [UIColor colorWithWhite:0.98 alpha:1.0];
+        container.layer.cornerRadius = 6;
+        container.layer.borderColor = [UIColor colorWithWhite:0.96 alpha:1.0].CGColor;
+        container.layer.borderWidth = 1;
+        container.clipsToBounds = YES;
+        container.translatesAutoresizingMaskIntoConstraints = NO;
+        container;
+    });
     
     UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [saveBtn setTitle:@"登录" forState:UIControlStateNormal];
     saveBtn.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
     [saveBtn setTitleColor:UIColor.systemBlueColor forState:UIControlStateNormal];
     [saveBtn addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
+    saveBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.container2];
+    [self.container2 addSubview:self.textView];
+    [self.container2 addSubview:saveBtn];
     
-    [self.contentView addSubview:view2];
-    [view2 addSubview:self.textView];
-    [view2 addSubview:saveBtn];
-    
-    [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(container.mas_bottom).offset(20);
-        make.left.right.equalTo(self.contentView).inset(15);
-        make.height.mas_equalTo(0);
-    }];
-    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(view2).inset(12);
-        make.right.equalTo(saveBtn.mas_left);
-        make.bottom.equalTo(view2).offset(-12);
-    }];
-    [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.right.mas_equalTo(view2);
-        make.width.mas_equalTo(50);
-    }];
+    NSLayoutConstraint *heightConstraint = [self.container2.heightAnchor constraintEqualToConstant:0];
+    self.container2H = heightConstraint;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.container2.topAnchor constraintEqualToAnchor:self.container1.bottomAnchor constant:20],
+        [self.container2.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:15],
+        [self.container2.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-15],
+        heightConstraint
+    ]];
+    [NSLayoutConstraint activateConstraints:@[
+        [saveBtn.topAnchor constraintEqualToAnchor:self.container2.topAnchor],
+        [saveBtn.bottomAnchor constraintEqualToAnchor:self.container2.bottomAnchor],
+        [saveBtn.rightAnchor constraintEqualToAnchor:self.container2.rightAnchor],
+        [saveBtn.widthAnchor constraintEqualToConstant:50]
+    ]];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.textView.topAnchor constraintEqualToAnchor:self.container2.topAnchor constant:12],
+        [self.textView.leftAnchor constraintEqualToAnchor:self.container2.leftAnchor constant:12],
+        [self.textView.rightAnchor constraintEqualToAnchor:saveBtn.leftAnchor],
+        [self.textView.bottomAnchor constraintEqualToAnchor:self.container2.bottomAnchor constant:-12]
+    ]];
     
     /*
     //经纬度
@@ -411,14 +435,15 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 
 - (void)setupBottmViews {
     // 清除缓存按钮
-//    UIButton *clearCacheBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-//    clearCacheBtn.backgroundColor = [UIColor colorWithRed:0.27 green:0.56 blue:0.89 alpha:1.0]; // 设置不同颜色
-//    clearCacheBtn.layer.cornerRadius = 25;
-//    clearCacheBtn.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
-//    [clearCacheBtn setTitle:@"清除缓存" forState:UIControlStateNormal];
-//    [clearCacheBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-//    [clearCacheBtn addTarget:self action:@selector(clearCacheAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:clearCacheBtn];
+    UIButton *clearCacheBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    clearCacheBtn.backgroundColor = [UIColor colorWithRed:0.27 green:0.56 blue:0.89 alpha:1.0]; // 设置不同颜色
+    clearCacheBtn.layer.cornerRadius = 25;
+    clearCacheBtn.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
+    [clearCacheBtn setTitle:@"清除钥匙串" forState:UIControlStateNormal];
+    [clearCacheBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    [clearCacheBtn addTarget:self action:@selector(clearCacheAction) forControlEvents:UIControlEventTouchUpInside];
+    clearCacheBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:clearCacheBtn];
     
     UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     clearBtn.backgroundColor = [UIColor colorWithRed:0.89 green:0.27 blue:0.27 alpha:1.0];
@@ -427,28 +452,41 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     [clearBtn setTitle:@"一键清除" forState:UIControlStateNormal];
     [clearBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [clearBtn addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
+    clearBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:clearBtn];
     
-//    [clearCacheBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view).inset(40);
-//        make.height.mas_equalTo(50);
-//        make.bottom.equalTo(clearBtn.mas_top).offset(-20); // 将清除缓存按钮放在清除钥匙串按钮上方
-//    }];
-    [clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).inset(40);
-        make.height.mas_equalTo(50);
-        make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-40);
-    }];
+    [NSLayoutConstraint activateConstraints:@[
+        [clearCacheBtn.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:40],
+        [clearCacheBtn.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-40],
+        [clearCacheBtn.heightAnchor constraintEqualToConstant:50],
+        [clearCacheBtn.bottomAnchor constraintEqualToAnchor:clearBtn.topAnchor constant:-20]
+    ]];
+    
+    [NSLayoutConstraint activateConstraints:@[
+        [clearBtn.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:40],
+        [clearBtn.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-40],
+        [clearBtn.heightAnchor constraintEqualToConstant:50],
+        [clearBtn.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40]
+    ]];
+
     
     UILabel *lbl = [[UILabel alloc] init];
     lbl.font = [UIFont systemFontOfSize:14];
     lbl.text = @"点击空白区域关闭页面";
     lbl.textColor = [UIColor colorWithRed:0.89 green:0.27 blue:0.27 alpha:0.5];
+    lbl.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:lbl];
-    [lbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(clearBtn);
-        make.top.mas_equalTo(clearBtn.mas_bottom).mas_offset(10);
-    }];
+    [NSLayoutConstraint activateConstraints:@[
+        [lbl.centerXAnchor constraintEqualToAnchor:clearBtn.centerXAnchor],
+        [lbl.topAnchor constraintEqualToAnchor:clearBtn.bottomAnchor constant:10]
+    ]];
+    
+    [self.view addSubview:self.deviceLab];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.deviceLab.topAnchor constraintEqualToAnchor:lbl.bottomAnchor constant:4],
+        [self.deviceLab.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:40],
+        [self.deviceLab.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-40]
+    ]];
 }
 
 - (void)updatetokenLab {
@@ -791,7 +829,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [Tools.keyWindow endEditing:YES];
 }
 
 // 清除缓存的实现
@@ -816,6 +854,11 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         [self generateEnvironment:nil];
     });
     NSLog(@"缓存已清除");
+}
+
+- (void)clearCacheAction{
+    // 4. 清空钥匙串
+    [self clearKeychainExceptForAccounts:@[@"has_device_ever_signed_in"]];
 }
 
 - (void)exitApplication {
@@ -1046,7 +1089,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 }
 
 - (void)popVC {
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [Tools.keyWindow endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -1057,6 +1100,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         tView.backgroundColor = UIColor.systemGroupedBackgroundColor;//[UIColor colorWithWhite:0.98 alpha:1.0];
         tView.font = [UIFont systemFontOfSize:16];
         tView.textColor = UIColor.labelColor;
+        tView.translatesAutoresizingMaskIntoConstraints = NO;
         _textView = tView;
     }
     return _textView;
@@ -1103,4 +1147,15 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     return _responseTextView;
 }
 
+- (UILabel *)deviceLab{
+    if (!_deviceLab) {
+        UILabel *lab = [[UILabel alloc] init];
+        lab.textColor = UIColor.grayColor;
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.font = [UIFont systemFontOfSize:8];
+        lab.translatesAutoresizingMaskIntoConstraints = NO;
+        _deviceLab = lab;
+    }
+    return _deviceLab;
+}
 @end
