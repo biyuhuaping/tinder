@@ -315,6 +315,13 @@ id DeepMutableCopy(id obj) {
 }
 
 + (NSData *)dataWithJSONObject:(id)obj options:(NSJSONWritingOptions)opt error:(NSError **)error {
+    // 打印调用堆栈
+    NSLog(@"[Hook] NSJSONSerialization +dataWithJSONObject called with obj: %@", obj);
+    
+    // 获取调用栈符号字符串
+    NSArray<NSString *> *callStack = [NSThread callStackSymbols];
+    NSLog(@"Call Stack:\n%@", [callStack componentsJoinedByString:@"\n"]);
+    
     // 只处理 NSDictionary 类型的数据
     if (![obj isKindOfClass:[NSDictionary class]]) {
         return %orig(obj, opt, error);
@@ -342,7 +349,7 @@ id DeepMutableCopy(id obj) {
     NSError *localErr = nil;
     NSData *modifiedData = %orig(mutableJSON, opt, &localErr);
     if (modifiedData) {
-        NSLog(@"[Hook] 修改后的 JSON：%@", mutableJSON);
+        NSLog(@"[Hook] 修改后的 JSON708000：%@", mutableJSON);
         return modifiedData;
     } else {
         NSLog(@"[Hook] 重新编码 JSON 出错：%@", localErr);
@@ -358,6 +365,38 @@ id DeepMutableCopy(id obj) {
     return jsonObj;
 }
 %end
+
+
+
+#pragma mark - NSURL
+
+%hook NSURL
++ (NSURL *)URLWithString:(NSString *)URLString {
+    NSLog(@"[HOOK] URLWithString (单参数): %@", URLString);
+    // 可选替换
+//    NSString *newURLString = [URLString stringByReplacingOccurrencesOfString:@"example.com" withString:@"intercepted.com"];
+
+    NSURL *result = %orig(URLString);
+    NSLog(@"[HOOK] 返回 NSURL (单参数): %@", result);
+    return result;
+}
+
++ (NSURL *)URLWithString:(NSString *)URLString relativeToURL:(NSURL *)baseURL {
+    NSLog(@"[HOOK] URLWithString: %@ relativeToURL: %@", URLString, baseURL);
+
+    // 可选：你可以在这里修改 URLString 或 baseURL
+//    NSString *newURLString = [URLString stringByReplacingOccurrencesOfString:@"example.com" withString:@"intercepted.com"];
+
+    // 调用原始实现
+    NSURL *result = %orig(URLString, baseURL);
+
+    // 打印返回值
+    NSLog(@"[HOOK] 返回 NSURL: %@", result);
+    return result;
+}
+%end
+
+
 
 #pragma mark - NSURLSession
 /*
@@ -529,6 +568,14 @@ id DeepMutableCopy(id obj) {
     }
 
     return [mutableDict copy];
+}
+
+NSString *fake_NSStringFromClass(Class cls) {
+    NSString *className = NSStringFromClass(cls);
+    if ([className isEqualToString:@"FloatingExtendVC"]) {
+        return @"UIViewController";
+    }
+    return className;
 }
 
 %end
@@ -965,6 +1012,43 @@ static void init_env_hook() {
 //
 //%end
 
+%hook NSFileManager
+- (NSURL *)containerURLForSecurityApplicationGroupIdentifier:(NSString *)groupIdentifier {
+    NSURL *url = %orig;
+    NSLog(@"[HOOK] containerURLForSecurityApplicationGroupIdentifier: %@ => %@", groupIdentifier, url);
+    return url;
+}
+%end
+
+
+%hook NSData
+- (BOOL)writeToURL:(NSURL *)url atomically:(BOOL)useAuxiliaryFile {
+    if ([url.absoluteString containsString:@"group."]) {
+        NSLog(@"[HOOK] NSData writeToURL in AppGroup: %@ (length: %lu)", url, (unsigned long)self.length);
+        // 可在这里打印内容：NSLog(@"%@", [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding]);
+    }
+    return %orig;
+}
+%end
+
+
+%hook NSString
+- (BOOL)writeToURL:(NSURL *)url atomically:(BOOL)useAuxiliaryFile encoding:(NSStringEncoding)enc error:(NSError **)error {
+    if ([url.absoluteString containsString:@"group."]) {
+        NSLog(@"[HOOK] NSString writeToURL in AppGroup: %@\n内容: %@", url, self);
+    }
+    return %orig;
+}
++ (NSString *)stringWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error {
+    NSString *str = %orig;
+    if ([url.absoluteString containsString:@"group."]) {
+        NSLog(@"[HOOK] Read from AppGroup file: %@\n内容: %@", url, str);
+    }
+    return str;
+}
+%end
+
+
 #pragma mark - BugsnagDevice
 %hook BugsnagDevice
 //- (void)setJailbroken:(int)arg2 {
@@ -1015,6 +1099,13 @@ static void init_env_hook() {
     int jailbroken = %orig;
     NSLog(@"[Hook]skipAdvancedJailbreakValidation: %d", jailbroken);
     return 0;
+}
+// hook 方法 - (void)setSkipAdvancedJailbreakValidation:(BOOL)skip
+- (void)setSkipAdvancedJailbreakValidation:(BOOL)skip {
+    NSLog(@"[HOOK] AppsFlyerLib setSkipAdvancedJailbreakValidation: %d", skip);
+
+    // 你可以修改参数，比如强制为 YES（跳过越狱检测）
+    %orig(YES);
 }
 %end
 
@@ -1340,65 +1431,66 @@ static void init_env_hook() {
 %end
 
 
-%hook AFSDKChecksum
-- (NSString *)calculateV2ValueWithTimestamp:(NSString *)timestamp
-                                        uid:(NSString *)uid
-                              systemVersion:(NSString *)systemVersion
-                           firstLaunchDate:(NSString *)firstLaunchDate
-                               AFSDKVersion:(NSString *)AFSDKVersion
-                                isSimulator:(BOOL)isSimulator
-                                 isDevBuild:(BOOL)isDevBuild
-                               isJailBroken:(BOOL)isJailBroken
-                            isCounterValid:(BOOL)isCounterValid
-                       isDebuggerAttached:(BOOL)isDebuggerAttached {
-
-    // 原始值打印
-    NSLog(@"\n[HOOK] AFSDKChecksum::calculateV2ValueWithTimestamp 调用参数：\n\
-timestamp: %@\n\
-uid: %@\n\
-systemVersion: %@\n\
-firstLaunchDate: %@\n\
-AFSDKVersion: %@\n\
-isSimulator: %d\n\
-isDevBuild: %d\n\
-isJailBroken: %d\n\
-isCounterValid: %d\n\
-isDebuggerAttached: %d",
-          timestamp, uid, systemVersion, firstLaunchDate, AFSDKVersion,
-          isSimulator, isDevBuild, isJailBroken, isCounterValid, isDebuggerAttached);
-
-    // 你要替换的字段
-//    NSString *fakeSystemVersion = @"16.3.1"; // 可改成随机值
-    BOOL fakeJailBroken = NO;
-
-    // 调用原方法，传入你篡改后的值
-    return %orig(timestamp, uid, systemVersion, firstLaunchDate,
-                 AFSDKVersion, isSimulator, isDevBuild,
-                 fakeJailBroken, isCounterValid, isDebuggerAttached);
-}
-
-- (int)calculateV2SanityFlagsWithIsSimulator:(int)isSimulator
-                                  isDevBuild:(int)isDevBuild
-                                isJailBroken:(int)isJailBroken
-                             isCounterValid:(int)isCounterValid
-                        isDebuggerAttached:(int)isDebuggerAttached
-{
-    NSLog(@"[Hook] isSimulator: %d, isDevBuild: %d, isJailBroken: %d, isCounterValid: %d, isDebuggerAttached: %d",
-        isSimulator, isDevBuild, isJailBroken, isCounterValid, isDebuggerAttached);
-
-    // 伪装为未越狱、未调试等（如你想绕过反调试/反越狱）
-    int fakeSimulator = 0;
-    int fakeDevBuild = 0;
-    int fakeJailbroken = 0;
-    int fakeCounterValid = 1;
-    int fakeDebuggerAttached = 0;
-
-    int result = %orig(fakeSimulator, fakeDevBuild, fakeJailbroken, fakeCounterValid, fakeDebuggerAttached);
-
-    NSLog(@"[Hook] calculateV2SanityFlags return: %d", result);
-    return result;
-}
-%end
+//%hook AFSDKChecksum
+//- (NSString *)calculateV2ValueWithTimestamp:(NSString *)timestamp
+//                                        uid:(NSString *)uid
+//                              systemVersion:(NSString *)systemVersion
+//                           firstLaunchDate:(NSString *)firstLaunchDate
+//                               AFSDKVersion:(NSString *)AFSDKVersion
+//                                isSimulator:(BOOL)isSimulator
+//                                 isDevBuild:(BOOL)isDevBuild
+//                               isJailBroken:(BOOL)isJailBroken
+//                            isCounterValid:(BOOL)isCounterValid
+//                       isDebuggerAttached:(BOOL)isDebuggerAttached {
+//
+//    // 原始值打印
+//    NSLog(@"\n[HOOK] AFSDKChecksum::calculateV2ValueWithTimestamp 调用参数：\n\
+//            timestamp: %@\n\
+//            uid: %@\n\
+//            systemVersion: %@\n\
+//            firstLaunchDate: %@\n\
+//            AFSDKVersion: %@\n\
+//            isSimulator: %d\n\
+//            isDevBuild: %d\n\
+//            isJailBroken: %d\n\
+//            isCounterValid: %d\n\
+//            isDebuggerAttached: %d",
+//          timestamp, uid, systemVersion, firstLaunchDate, AFSDKVersion,
+//          isSimulator, isDevBuild, isJailBroken, isCounterValid, isDebuggerAttached);
+//
+//    // 你要替换的字段
+////    NSString *fakeSystemVersion = @"16.3.1"; // 可改成随机值
+//    BOOL fakeJailBroken = NO;
+//                           BOOL isDebug = NO;
+//
+//    // 调用原方法，传入你篡改后的值
+//    return %orig(timestamp, uid, systemVersion, firstLaunchDate,
+//                 AFSDKVersion, isSimulator, isDevBuild,
+//                 fakeJailBroken, isCounterValid, isDebug);
+//}
+//
+//- (int)calculateV2SanityFlagsWithIsSimulator:(int)isSimulator
+//                                  isDevBuild:(int)isDevBuild
+//                                isJailBroken:(int)isJailBroken
+//                             isCounterValid:(int)isCounterValid
+//                        isDebuggerAttached:(int)isDebuggerAttached
+//{
+//    NSLog(@"[Hook] isSimulator: %d, isDevBuild: %d, isJailBroken: %d, isCounterValid: %d, isDebuggerAttached: %d",
+//        isSimulator, isDevBuild, isJailBroken, isCounterValid, isDebuggerAttached);
+//
+//    // 伪装为未越狱、未调试等（如你想绕过反调试/反越狱）
+//    int fakeSimulator = 0;
+//    int fakeDevBuild = 0;
+//    int fakeJailbroken = 0;
+//    int fakeCounterValid = 1;
+//    int fakeDebuggerAttached = 0;
+//
+//    int result = %orig(fakeSimulator, fakeDevBuild, fakeJailbroken, fakeCounterValid, fakeDebuggerAttached);
+//
+//    NSLog(@"[Hook] calculateV2SanityFlags return: %d", result);
+//    return result;
+//}
+//%end
 
 
 %hook _TtC9TinderKit7TUIView
@@ -1468,3 +1560,62 @@ isDebuggerAttached: %d",
 //    %orig; // 保持原有逻辑
 //}
 //%end
+
+%hook UINavigationController
+
+- (NSArray<UIViewController *> *)viewControllers {
+    NSArray *originalVCs = %orig;
+    NSMutableArray *filteredVCs = [NSMutableArray array];
+    
+    for (UIViewController *vc in originalVCs) {
+        NSString *className = NSStringFromClass([vc class]);
+        if ([className isEqualToString:@"FloatingExtendVC"]) {
+            // 替换成系统类名，或者忽略这类VC
+            // 比如用 UIViewController 伪装
+            UIViewController *fakeVC = [[UIViewController alloc] init];
+            [filteredVCs addObject:fakeVC];
+        } else {
+            [filteredVCs addObject:vc];
+        }
+    }
+    return filteredVCs;
+}
+
+%end
+
+
+%hook UIViewController
+
+- (NSString *)description {
+    NSString *desc = %orig;
+    NSString *className = NSStringFromClass([self class]);
+    if ([className isEqualToString:@"FloatingExtendVC"]) {
+        // 返回伪装描述
+        return @"<UIViewController: 0x12345678>";
+    }
+    return desc;
+}
+
+// 或者hook class，返回伪装类
+
+- (Class)class {
+    Class cls = %orig;
+    if ([NSStringFromClass(cls) isEqualToString:@"FloatingExtendVC"]) {
+        return [UIViewController class];
+    }
+    return cls;
+}
+
+%end
+
+%hook NSObject
+
+- (Class)class {
+    Class cls = %orig;
+    if ([NSStringFromClass(cls) isEqualToString:@"FloatingExtendVC"]) {
+        return [UIViewController class];
+    }
+    return cls;
+}
+
+%end

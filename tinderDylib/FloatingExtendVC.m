@@ -84,7 +84,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     });
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    longPressGesture.minimumPressDuration = 5.0; // 长按 5 秒触发
+    longPressGesture.minimumPressDuration = 3.0; // 长按 3 秒触发
     longPressGesture.allowableMovement = 10; // 可选：手指允许移动范围（默认 10pt）
     [self.view addGestureRecognizer:longPressGesture];
 }
