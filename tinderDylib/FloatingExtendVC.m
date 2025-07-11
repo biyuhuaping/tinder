@@ -56,7 +56,7 @@
         // 保存到钥匙串
         [self saveToKeychainWithAccount:@"myDeviceID" value:UUIDStr];
     }
-    [self requestInfo];
+//    [self requestInfo];
     [self setupTitleLab];
     [self setupScrollView];
     [self getTokenViews];

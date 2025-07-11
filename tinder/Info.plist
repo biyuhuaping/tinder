@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>API-versioning-number</key>
-	<integer>6818</integer>
+	<integer>6844</integer>
 	<key>AppIdentifierPrefix</key>
 	<string>TNDR</string>
 	<key>BuildMachineOSBuild</key>
@@ -22,6 +22,20 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
+			<key>FrostGlass</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>FrostGlass</string>
+				</array>
+			</dict>
+			<key>Glassy</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Glassy</string>
+				</array>
+			</dict>
 			<key>Gold-60</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -29,11 +43,32 @@
 					<string>Gold-60</string>
 				</array>
 			</dict>
+			<key>Gradient1</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Gradient1</string>
+				</array>
+			</dict>
+			<key>Gradient2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Gradient2</string>
+				</array>
+			</dict>
 			<key>Platinum-60</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>Platinum-60</string>
+				</array>
+			</dict>
+			<key>Rainbow</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Rainbow</string>
 				</array>
 			</dict>
 			<key>Select-60</key>
@@ -83,7 +118,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>16.11.0</string>
+	<string>16.12.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -155,7 +190,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>16110028</string>
+	<string>16120027</string>
 	<key>DTAppStoreToolsBuild</key>
 	<string>16F3</string>
 	<key>DTCompiler</key>
