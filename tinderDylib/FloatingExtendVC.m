@@ -12,6 +12,7 @@
 #import "AESUtil.h"
 #import "Tools.h"
 
+
 //#define kFilePath @"/var/mobile/Documents/new_config.json"
 //#define kAutoPath @"/var/mobile/Documents/auto_status.json"
 #define kFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"device_config.json"]
@@ -37,7 +38,6 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 @property (nonatomic, strong) UITextView *responseTextView;
 
 @property (nonatomic, strong) NSLayoutConstraint *container2H;
-
 
 //设备ID
 @property (nonatomic, copy) NSString *deviceId;
@@ -66,9 +66,9 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         // 保存到钥匙串
         [self saveToKeychainWithAccount:@"myDeviceID" value:UUIDStr];
     }
+
     self.deviceLab.text = self.deviceId;
-    
-    [self requestInfo];
+//    [self requestInfo];
     [self setupViewUI];
     [self updatetokenLab];
         
@@ -1158,4 +1158,5 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     }
     return _deviceLab;
 }
+
 @end
