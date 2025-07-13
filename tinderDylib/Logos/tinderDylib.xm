@@ -1619,3 +1619,365 @@ static void init_env_hook() {
 }
 
 %end
+
+
+
+%hook USRVApiDeviceInfo
+
++ (int)WebViewExposed_getCurrentUITheme:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getCurrentUITheme called with arg: %d", arg2);
+    // 你可以在这里修改返回值，比如强制返回 1 表示深色模式（或其他值）
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+    // return 1; // 强制深色模式
+}
++ (int)WebViewExposed_getLocaleList:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getLocaleList called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++ (int)WebViewExposed_getSystemBootTime:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getSystemBootTime called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++ (int)WebViewExposed_getDeviceName:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getDeviceName called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++ (int)WebViewExposed_getVendorIdentifier:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getVendorIdentifier called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++ (int)WebViewExposed_getElapsedRealtime:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getElapsedRealtime called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++ (int)WebViewExposed_getUptime:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getUptime called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++ (int)WebViewExposed_getCPUCount:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getCPUCount called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_unregisterVolumeChangeListener:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_unregisterVolumeChangeListener called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_registerVolumeChangeListener:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_registerVolumeChangeListener called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getDeviceMaxVolume:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getDeviceMaxVolume called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getGLVersion:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getGLVersion called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_isStatusBarHidden:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_isStatusBarHidden called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getStatusBarHeight:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getStatusBarHeight called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getStatusBarWidth:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getStatusBarWidth called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getProcessInfo:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getProcessInfo called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getSensorList:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getSensorList called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getSupportedOrientations:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getSupportedOrientations called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getAdNetworkIdsPlist:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getAdNetworkIdsPlist called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getSupportedOrientationsPlist:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getSupportedOrientationsPlist called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_isSimulator:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_isSimulator called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getUserInterfaceIdiom:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getUserInterfaceIdiom called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getUniqueEventId:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getUniqueEventId called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_isRooted:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_isRooted called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getTotalMemory:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getTotalMemory called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getFreeMemory:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getFreeMemory called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getBatteryStatus:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getBatteryStatus called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getBatteryLevel:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getBatteryLevel called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getTotalSpace:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getTotalSpace called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getFreeSpace:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getFreeSpace called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getScreenBrightness:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getScreenBrightness called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getDeviceVolume:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getDeviceVolume called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getSystemLanguage:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getSystemLanguage called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getTimeZoneOffset:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getTimeZoneOffset called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getTimeZone:(int)arg2 callback:(int)arg3 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getTimeZone called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getHeadset:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getHeadset called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getNetworkCountryISO:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getNetworkCountryISO called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getNetworkOperatorName:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getNetworkOperatorName called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_checkIsMuted:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_checkIsMuted called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getNetworkOperator:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getNetworkOperator called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getScreenHeight:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getScreenHeight called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getScreenWidth:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getScreenWidth called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getScreenScale:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getScreenScale called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getNetworkType:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getNetworkType called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getConnectionType:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getConnectionType called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getModel:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getModel called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getOsVersion:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getOsVersion called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getLimitAdTrackingFlag:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getLimitAdTrackingFlag called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
++(int)WebViewExposed_getAdvertisingTrackingId:(int)arg2 {
+    NSLog(@"[HOOK] USRVApiDeviceInfo WebViewExposed_getAdvertisingTrackingId called with arg: %d", arg2);
+    int original = %orig;
+    NSLog(@"[HOOK] Original UITheme: %d", original);
+    return original;
+}
+
+%end
+
+
+
+%hook BNCDeviceInfo
+
+- (int)loadDeviceInfo {
+    NSLog(@"[HOOK] BNCDeviceInfo -loadDeviceInfo called");
+
+    // ✅ 你可以在这里篡改设备信息前做处理，比如：
+    // 伪造 IDFV、系统版本、设备型号等
+
+    int result = %orig;
+
+    // 你也可以在 result 基础上修改
+    NSLog(@"[HOOK] BNCDeviceInfo -loadDeviceInfo returned %d", result);
+    return result;
+}
+- (NSString *)localIPAddress {
+    NSString *realIP = %orig;
+    NSLog(@"[BNCDeviceInfo] 当前本地 IP 地址: %@", realIP);
+    return realIP;
+}
+- (NSString *)userAgentString {
+    NSString *ua = %orig;
+    NSLog(@"[BNCDeviceInfo] User-Agent: %@", ua);
+    return ua;
+}
+
+%end
+
+
+%hook FBSDKAppEventsDeviceInfo
+- (void)setSysVersion:(int)value {
+    NSLog(@"[Hook] setSysVersion called with value: %d", value);
+    %orig(1600); // 伪造为 iOS 16.0
+}
+- (int)sysVersion {
+    int orig = %orig;
+    NSLog(@"[Hook] sysVersion called, original: %d", orig);
+    return 1600; // 返回伪造的版本号
+}
+%end
+
+
+
+%hook OTDeviceInfo
+
++ (NSString *)systemName {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] +[OTDeviceInfo systemName] original: %@", orig);
+    return @"AndroidOS"; // 替换返回值
+}
++ (NSString *)libOpentokSHA1 {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] libOpentokSHA1 original: %@", orig);
+    return @"0000000000000000000000000000000000000000"; // 替换为伪造的哈希值
+}
+
+%end
