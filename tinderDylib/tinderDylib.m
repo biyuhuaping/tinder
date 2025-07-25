@@ -47,17 +47,17 @@ CHConstructor{
             [window makeKeyAndVisible];
         });
 
-        Class metaNSURL = object_getClass(NSClassFromString(@"NSURL")); // 关键：类方法 = 元类
-        [[OCMethodTrace sharedInstance] traceMethodWithClass:metaNSURL condition:^BOOL(SEL sel) {
-            // Hook 类方法，例如 URLWithString:、fileURLWithPath: 等
-            NSString *selName = NSStringFromSelector(sel);
-            return [selName hasPrefix:@"URL"];
-        } before:^(id target, Class cls, SEL sel, NSArray *args, int deep) {
-            NSLog(@"[TRACE BEFORE] +[%@ %@] args = %@", cls, NSStringFromSelector(sel), args);
-            NSLog(@"[Call Stack]\n%@", [NSThread callStackSymbols]);
-        } after:^(id target, Class cls, SEL sel, id ret, int deep, NSTimeInterval interval) {
-            NSLog(@"[TRACE AFTER] +[%@ %@] return = %@ time = %.2fms", cls, NSStringFromSelector(sel), ret, interval * 1000);
-        }];
+//        Class metaNSURL = object_getClass(NSClassFromString(@"NSURL")); // 关键：类方法 = 元类
+//        [[OCMethodTrace sharedInstance] traceMethodWithClass:metaNSURL condition:^BOOL(SEL sel) {
+//            // Hook 类方法，例如 URLWithString:、fileURLWithPath: 等
+//            NSString *selName = NSStringFromSelector(sel);
+//            return [selName hasPrefix:@"URL"];
+//        } before:^(id target, Class cls, SEL sel, NSArray *args, int deep) {
+//            NSLog(@"[TRACE BEFORE] +[%@ %@] args = %@", cls, NSStringFromSelector(sel), args);
+//            NSLog(@"[Call Stack]\n%@", [NSThread callStackSymbols]);
+//        } after:^(id target, Class cls, SEL sel, id ret, int deep, NSTimeInterval interval) {
+//            NSLog(@"[TRACE AFTER] +[%@ %@] return = %@ time = %.2fms", cls, NSStringFromSelector(sel), ret, interval * 1000);
+//        }];
         
 //        [[OCMethodTrace sharedInstance] traceMethodWithClass:NSClassFromString(@"NSURL") condition:^BOOL(SEL sel) {
 //            // 只 hook setSkipAdvancedJailbreakValidation:

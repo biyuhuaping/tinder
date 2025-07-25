@@ -862,13 +862,13 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 }
 
 - (void)exitApplication {
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    [UIView animateWithDuration:0.8 animations:^{
-//        window.alpha = 0;
-//        window.frame = CGRectMake(window.bounds.size.width/2, window.bounds.size.height/2, 0, 0);
-//    } completion:^(BOOL finished) {
-//        exit(0); // 实际退出（慎用）
-//    }];
+    UIWindow *window = Tools.keyWindow;
+    [UIView animateWithDuration:0.8 animations:^{
+        window.alpha = 0;
+        window.frame = CGRectMake(window.bounds.size.width/2, window.bounds.size.height/2, 0, 0);
+    } completion:^(BOOL finished) {
+        exit(0); // 实际退出（慎用）
+    }];
 }
 
 #pragma mark - 清除缓存和沙盒文件

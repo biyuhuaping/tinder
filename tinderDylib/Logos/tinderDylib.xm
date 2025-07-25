@@ -399,7 +399,7 @@ id DeepMutableCopy(id obj) {
 
 
 #pragma mark - NSURLSession
-/*
+
 %hook NSURLSession
 //
 //%new
@@ -451,87 +451,47 @@ id DeepMutableCopy(id obj) {
 //    return resultDict;
 //}
 
-- (id)dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData *data, NSURLResponse *response, NSError *error))completionHandler {
-    NSLog(@"Intercepted Request: %@", request.URL.absoluteString);
-    NSLog(@"Headers: %@", request.allHTTPHeaderFields);
-    
-    // 1. 创建一个可变的 `NSMutableURLRequest`
-//    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-//
-    // 2. 创建可变的 Headers 复制
-//    NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:request.allHTTPHeaderFields];
-//
-//    // 3. 获取 `persistent-device-id`
-//    NSString *myDeviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"c.deviceId"];
-//    if (myDeviceId) {
-//        headers[@"persistent-device-id"] = myDeviceId;
-//        NSLog(@"[Legos] myDeviceId Header value: %@", myDeviceId);
-//        [[NSUserDefaults standardUserDefaults] setObject:myDeviceId forKey:@"c.deviceId"];
-//    }
-//
-//    // 4. 检查 Headers 是否已经存在 `persistent-device-id`
-//    NSString *deviceId = headers[@"persistent-device-id"];
-//    if (deviceId) {
-//        NSLog(@"[Legos] deviceId Header value: %@", deviceId);
-//        [[NSUserDefaults standardUserDefaults] setObject:deviceId forKey:@"c.deviceId"];
-//    } else {
-//        NSLog(@"[Legos] Header key 'persistent-device-id' not found");
-//    }
-//
-//    // 5. 获取 `X-Auth-Token`
-//    NSString *authToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"c.authToken"];
-//    if (authToken) {
-//        headers[@"X-Auth-Token"] = authToken;
-//        NSLog(@"[Legos] authToken Header value: %@", authToken);
-//    } else {
-//        NSLog(@"[Legos] Header key 'X-Auth-Token' not found");
-//    }
-//
-    // 6. 重新设置请求的 HTTP 头
-//    mutableRequest.allHTTPHeaderFields = headers;
-//
-    // 打印入参（请求体
-    NSString *requestBody;
+- (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData *data, NSURLResponse *response, NSError *error))completionHandler{
+    NSString *url = request.URL.absoluteString;
+    NSLog(@"Intercepted Request: %@", url);
+
+    __block NSString *requestBody = nil;
     if (request.HTTPBody) {
         requestBody = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
         NSLog(@"[Legos] Request Body: %@", requestBody);
     }
-    
-    void (^complete)(NSData *, NSURLResponse *, NSError *) = ^(NSData *data, NSURLResponse *response, NSError *error) {
-        // 4. **打印出参（响应体）**
+
+    void (^customCompletion)(NSData *, NSURLResponse *, NSError *) = ^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"[Legos]请求：%@\n入参：%@\n出参：%@",request.URL.absoluteString, requestBody, responseBody);
-//        if ([request.URL.absoluteString containsString:@"/auth/login"]) {
-//            NSString *str = [[NSString alloc] initWithData:data encoding:4];
-//            if (str == nil) {
-//                str = [[NSString alloc] initWithData:data encoding:1];
-//                if (str) {
-//                    str = [str substringFromIndex:5];
-//                    NSArray *splits = [str componentsSeparatedByString:@"$"];
-//                    if (splits && [splits count] > 1) {
-//                        NSString *refreshToken = [splits[0] substringToIndex:[splits[0] length] - 1];
-//                        [[NSUserDefaults standardUserDefaults] setObject:refreshToken forKey:@"c.refreshToken"];
-//                        NSString *otherStr = splits[1];
-//                        splits = [otherStr componentsSeparatedByString:@"\""];
-//                        if (splits && [splits count] > 1) {
-//                            NSString *authToken = splits[0];
-//                            [[NSUserDefaults standardUserDefaults] setObject:authToken forKey:@"c.authToken"];
-//                        }
-//                    }
-//                }
-//            }
-////            NSDictionary *protobufDict = [self performSelector:@selector(parseProtobufData:) withObject:data];
-////            NSLog(@"[Legos] Protobuf: %@", protobufDict);
-//        }
+        NSLog(@"[Legos] 请求：%@\n入参：%@\n出参：%@", url, requestBody, responseBody);
+
+        NSDictionary *fakeResponse = nil;
+        if ([url containsString:@"/v2/device-check/ios"]) {
+            fakeResponse = @{
+                @"data": @{ @"action": @1, @"result": @{ @"action": @1 } },
+                @"meta": @{ @"status": @200 }
+            };
+        } else if ([url containsString:@"/v2/insendio/templates/active"]) {
+            fakeResponse = @{
+                @"data": @{ @"templates": @[] },
+                @"meta": @{ @"status": @200 }
+            };
+        }
+
+        if (fakeResponse) {
+            NSData *fakeData = [NSJSONSerialization dataWithJSONObject:fakeResponse options:0 error:nil];
+            NSHTTPURLResponse *fakeResp = [[NSHTTPURLResponse alloc] initWithURL:request.URL statusCode:200 HTTPVersion:@"HTTP/1.1" headerFields:@{@"Content-Type": @"application/json"}];
+            NSLog(@"[Legos] 使用自定义响应覆盖 %@", url);
+            completionHandler(fakeData, fakeResp, nil);
+            return;
+        }
+        // 否则使用原始返回
         completionHandler(data, response, error);
     };
-    
-    // 7. 确保传递 `mutableRequest`
-    return %orig(request, complete);
+    return %orig(request, customCompletion);
 }
-
 %end
-*/
+
 
 #pragma mark - WKWebView
 %hook WKWebView
@@ -1561,64 +1521,64 @@ static void init_env_hook() {
 //}
 //%end
 
-%hook UINavigationController
+//%hook UINavigationController
+//
+//- (NSArray<UIViewController *> *)viewControllers {
+//    NSArray *originalVCs = %orig;
+//    NSMutableArray *filteredVCs = [NSMutableArray array];
+//    
+//    for (UIViewController *vc in originalVCs) {
+//        NSString *className = NSStringFromClass([vc class]);
+//        if ([className isEqualToString:@"FloatingExtendVC"]) {
+//            // 替换成系统类名，或者忽略这类VC
+//            // 比如用 UIViewController 伪装
+//            UIViewController *fakeVC = [[UIViewController alloc] init];
+//            [filteredVCs addObject:fakeVC];
+//        } else {
+//            [filteredVCs addObject:vc];
+//        }
+//    }
+//    return filteredVCs;
+//}
+//
+//%end
 
-- (NSArray<UIViewController *> *)viewControllers {
-    NSArray *originalVCs = %orig;
-    NSMutableArray *filteredVCs = [NSMutableArray array];
-    
-    for (UIViewController *vc in originalVCs) {
-        NSString *className = NSStringFromClass([vc class]);
-        if ([className isEqualToString:@"FloatingExtendVC"]) {
-            // 替换成系统类名，或者忽略这类VC
-            // 比如用 UIViewController 伪装
-            UIViewController *fakeVC = [[UIViewController alloc] init];
-            [filteredVCs addObject:fakeVC];
-        } else {
-            [filteredVCs addObject:vc];
-        }
-    }
-    return filteredVCs;
-}
 
-%end
+//%hook UIViewController
+//
+//- (NSString *)description {
+//    NSString *desc = %orig;
+//    NSString *className = NSStringFromClass([self class]);
+//    if ([className isEqualToString:@"FloatingExtendVC"]) {
+//        // 返回伪装描述
+//        return @"<UIViewController: 0x12345678>";
+//    }
+//    return desc;
+//}
+//
+//// 或者hook class，返回伪装类
+//
+//- (Class)class {
+//    Class cls = %orig;
+//    if ([NSStringFromClass(cls) isEqualToString:@"FloatingExtendVC"]) {
+//        return [UIViewController class];
+//    }
+//    return cls;
+//}
+//
+//%end
 
-
-%hook UIViewController
-
-- (NSString *)description {
-    NSString *desc = %orig;
-    NSString *className = NSStringFromClass([self class]);
-    if ([className isEqualToString:@"FloatingExtendVC"]) {
-        // 返回伪装描述
-        return @"<UIViewController: 0x12345678>";
-    }
-    return desc;
-}
-
-// 或者hook class，返回伪装类
-
-- (Class)class {
-    Class cls = %orig;
-    if ([NSStringFromClass(cls) isEqualToString:@"FloatingExtendVC"]) {
-        return [UIViewController class];
-    }
-    return cls;
-}
-
-%end
-
-%hook NSObject
-
-- (Class)class {
-    Class cls = %orig;
-    if ([NSStringFromClass(cls) isEqualToString:@"FloatingExtendVC"]) {
-        return [UIViewController class];
-    }
-    return cls;
-}
-
-%end
+//%hook NSObject
+//
+//- (Class)class {
+//    Class cls = %orig;
+//    if ([NSStringFromClass(cls) isEqualToString:@"FloatingExtendVC"]) {
+//        return [UIViewController class];
+//    }
+//    return cls;
+//}
+//
+//%end
 
 
 
@@ -1939,14 +1899,37 @@ static void init_env_hook() {
     NSLog(@"[HOOK] BNCDeviceInfo -loadDeviceInfo returned %d", result);
     return result;
 }
+
+- (void)setCountry:(id)value{
+    NSLog(@"[Hook] setCountry called with value: %@", value);
+    %orig(value);
+}
+
 - (NSString *)localIPAddress {
     NSString *realIP = %orig;
     NSLog(@"[BNCDeviceInfo] 当前本地 IP 地址: %@", realIP);
     return realIP;
 }
+//- (NSString *)userAgentString {
+//    NSString *ua = %orig;
+//    NSLog(@"[BNCDeviceInfo] User-Agent: %@", ua);
+//    return ua;//User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148
+//}
 - (NSString *)userAgentString {
     NSString *ua = %orig;
-    NSLog(@"[BNCDeviceInfo] User-Agent: %@", ua);
+    NSLog(@"[BNCDeviceInfo] Original User-Agent: %@", ua);
+
+    NSDictionary *config = loadConfigJson(); // 加载 JSON 配置
+    NSString *customOSV = config[@"osv"]; // 例如 @"17.6.1"
+
+    if (customOSV && [customOSV isKindOfClass:[NSString class]] && customOSV.length > 0) {
+        NSString *convertedOSV = [customOSV stringByReplacingOccurrencesOfString:@"." withString:@"_"]; // @"17_6_1"
+
+        // 用正则替换 UA 中的版本部分
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"iPhone OS \\d+_\\d+(?:_\\d+)?" options:0 error:nil];
+        ua = [regex stringByReplacingMatchesInString:ua options:0 range:NSMakeRange(0, ua.length) withTemplate:[NSString stringWithFormat:@"iPhone OS %@", convertedOSV]];
+        NSLog(@"[BNCDeviceInfo] Patched User-Agent: %@", ua);
+    }
     return ua;
 }
 
@@ -1956,13 +1939,18 @@ static void init_env_hook() {
 %hook FBSDKAppEventsDeviceInfo
 - (void)setSysVersion:(int)value {
     NSLog(@"[Hook] setSysVersion called with value: %d", value);
-    %orig(1600); // 伪造为 iOS 16.0
+    %orig(value); // 伪造为 iOS 16.0
 }
-- (int)sysVersion {
-    int orig = %orig;
-    NSLog(@"[Hook] sysVersion called, original: %d", orig);
-    return 1600; // 返回伪造的版本号
+- (NSString *)sysVersion {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] sysVersion: %@", orig);
+    return orig; // 伪造系统版本字符串
 }
+//- (int)sysVersion {
+//    int orig = %orig;
+//    NSLog(@"[Hook] sysVersion called, original: %d", orig);
+//    return orig; // 返回伪造的版本号
+//}
 %end
 
 
@@ -1972,12 +1960,54 @@ static void init_env_hook() {
 + (NSString *)systemName {
     NSString *orig = %orig;
     NSLog(@"[Hook] +[OTDeviceInfo systemName] original: %@", orig);
-    return @"AndroidOS"; // 替换返回值
+    return orig; // 替换返回值
+}
++ (NSString *)systemVersion {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] +[OTDeviceInfo systemVersion] original: %@", orig);
+    return orig; // 替换返回值
+}
++ (NSString *)libOpentokVersion{
+    NSString *orig = %orig;
+    NSLog(@"[Hook] libOpentokVersion original: %@", orig);
+    return orig;
 }
 + (NSString *)libOpentokSHA1 {
     NSString *orig = %orig;
     NSLog(@"[Hook] libOpentokSHA1 original: %@", orig);
-    return @"0000000000000000000000000000000000000000"; // 替换为伪造的哈希值
+    return orig; // 替换为伪造的哈希值
+}
++ (NSString *)machineName {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] machineName original: %@", orig);
+    return orig;
+}
++ (NSString *)deviceUUID {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] deviceUUID original: %@", orig);
+    return orig;
+}
++ (NSString *)userAgent {
+    NSString *orig = %orig;
+    NSLog(@"[Hook] userAgent original: %@", orig);
+    return orig;
+}
+%end
+
+
+%hook _TtC10TinderBase10DeviceInfo
+
+- (instancetype)init {
+    %log;  // 打印调用日志
+    NSLog(@"[HOOK] DeviceInfo init called");
+
+    // 调用原始构造方法
+    id orig = %orig;
+
+    // 在这里可以访问或修改对象的属性，例如:
+    // [orig setSomeProperty:@"spoofed"];
+
+    return orig;
 }
 
 %end
