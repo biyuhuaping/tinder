@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>API-versioning-number</key>
-	<integer>6874</integer>
+	<integer>6888</integer>
 	<key>AppIdentifierPrefix</key>
 	<string>TNDR</string>
 	<key>BuildMachineOSBuild</key>
@@ -118,7 +118,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>16.13.0</string>
+	<string>16.14.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -190,9 +190,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>16130031</string>
+	<string>16140016</string>
 	<key>DTAppStoreToolsBuild</key>
-	<string>16F3</string>
+	<string>16F7</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -265,7 +265,7 @@
 	<key>LineChannelIDProd</key>
 	<string>1657787365</string>
 	<key>MinimumOSVersion</key>
-	<string>10.0</string>
+	<real>10</real>
 	<key>NSAdvertisingAttributionReportEndpoint</key>
 	<string>https://appsflyer-skadnetwork.com/</string>
 	<key>NSAppTransportSecurity</key>
@@ -1217,6 +1217,8 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
@@ -1232,6 +1234,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>UIViewEdgeAntialiasing</key>
