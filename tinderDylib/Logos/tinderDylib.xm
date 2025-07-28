@@ -29,17 +29,6 @@ static NSDictionary *loadConfigJson() {
     return jsonDict;
 }
 
-//ua
-static NSString *fakeUserAgent() {
-    NSDictionary *config = loadConfigJson();
-    NSString *uaStr = config[@"ua"];
-    if ([uaStr isKindOfClass:[NSString class]] && uaStr.length > 0) {
-        return uaStr;
-    }
-    // 默认伪造 UA
-    return fakeUserAgent();
-}
-
 #pragma mark - IDFA
 %hook ASIdentifierManager
 //（IDFA）
@@ -541,7 +530,7 @@ NSString *fake_NSStringFromClass(Class cls) {
 %end
 
 #pragma mark - NSLocale
-
+/*
 %hook NSLocale
 // 伪造 locale（zh_CN）
 + (id)currentLocale {
@@ -572,10 +561,10 @@ NSString *fake_NSStringFromClass(Class cls) {
     return orig;
 }
 %end
-
+*/
 
 #pragma mark - NSTimeZone
-
+/*
 %hook NSTimeZone
 // Hook 当前本地时区
 + (NSTimeZone *)localTimeZone {
@@ -618,7 +607,7 @@ NSString *fake_NSStringFromClass(Class cls) {
     return orig;
 }
 %end
-
+*/
 
 #pragma mark - 修改 machine的系统版本号
 static int (*orig_sysctlbyname)(const char *, void *, size_t *, const void *, size_t);

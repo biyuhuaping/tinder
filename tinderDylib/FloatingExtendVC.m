@@ -71,7 +71,9 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 //    [self requestInfo];
     [self setupViewUI];
     [self updatetokenLab];
-        
+    NSDictionary *config = loadConfigJson();
+    self.responseTextView.text = [NSString stringWithFormat:@"%@",config?:@"手机环境数据"];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self readAllKeychainItems];
         [self redAllUserDefaults];
@@ -390,6 +392,14 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
         [self.textView.bottomAnchor constraintEqualToAnchor:self.container2.bottomAnchor constant:-12]
     ]];
     
+    [self.contentView addSubview:self.responseTextView];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.responseTextView.topAnchor constraintEqualToAnchor:self.container2.bottomAnchor constant:20],
+        [self.responseTextView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:15],
+        [self.responseTextView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-15],
+        [self.responseTextView.heightAnchor constraintEqualToConstant:260]
+    ]];
+    
     /*
     //经纬度
     UIView *view3 = [[UIView alloc] init];
@@ -509,79 +519,14 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
 
 #pragma mark - 请求设备信息
 //生成环境
-- (void)generateEnvironment1:(UIButton *)sender {
-    // 禁用按钮防止重复点击
-    sender.enabled = NO;
-    
-    // 显示加载指示器
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
-    activityIndicator.center = self.view.center;
-    [self.view addSubview:activityIndicator];
-    [activityIndicator startAnimating];
-    
-    // 获取IDFV
-    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    if (!idfv) {
-        idfv = @"unknown";
-    }
-    
-    // 构建请求URL
-    NSString *urlString = [NSString stringWithFormat:@"http://43.156.136.235/index.php/index/index/getInfo?idfv=%@", idfv];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    // 创建请求
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    // 发起请求
-    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        // 回到主线程更新UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [activityIndicator stopAnimating];
-            [activityIndicator removeFromSuperview];
-            
-            if (error) {// 请求失败
-                // 写入失败状态
-                [self writeStatusFile:2];
-                self.responseTextView.text = [NSString stringWithFormat:@"请求失败: %@", error.localizedDescription];
-                // 显示错误提示
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"失败" message:@"请求服务器失败，请检查网络连接" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction:done];
-                [self presentViewController:alert animated:YES completion:nil];
-            } else {
-                // 请求成功，解析JSON并显示
-                NSError *jsonError;
-                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-                
-                if (jsonError) {
-                    self.responseTextView.text = @"JSON解析失败";
-                     // 写入状态文件，状态码2表示失败
-                    [self writeStatusFile:2];
-                } else {
-                    // 保存JSON到文件
-                    [self saveJsonToFile:jsonDict];
-                    // 写入状态文件，状态码3表示成功
-                    [self writeStatusFile:3];
-                    
-                    // 显示在UI上
-                    NSData *prettyJsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:nil];
-                    NSString *jsonString = [[NSString alloc] initWithData:prettyJsonData encoding:NSUTF8StringEncoding];
-                    self.responseTextView.text = jsonString;
-                    
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"成功" message:@"环境已成功生成！\n重新打开应用" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *done = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [self clearAction];
-                    }];
-                    [alert addAction:done];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-            }
-            
-            // 恢复按钮状态
-            sender.enabled = YES;
-        });
-    }] resume];
-}
 - (void)generateEnvironment:(UIButton *)sender {
+    NSDictionary *dic = [NSDictionary new];
+    [self saveJsonToFile:dic];
+    [self writeStatusFile:3];
+    // 6. 退出程序
+    [self exitApplication];
+    
+    return;
     // 显示加载指示器
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     activityIndicator.center = self.view.center;
@@ -651,7 +596,6 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
                     //[self presentViewController:alert animated:YES completion:nil];
                 }
             }
-            
             // 恢复按钮状态
             sender.enabled = YES;
         });
@@ -659,7 +603,7 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     [task resume];
 }
 
-// 修改iOS版osv、revision的值
+// 修改模拟值
 - (NSMutableDictionary *)configJsonDict:(NSDictionary *)jsonDict{
     NSMutableDictionary *mutableDict = [jsonDict mutableCopy];
 
@@ -706,16 +650,52 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     NSString *randomDarwinVersion = osvToDarwin[randomOSV];
     NSString *randomModel = revisionToModel[randomRevision];
 
+    //低电量
+    BOOL lpm = arc4random_uniform(2); // 0 或 1
+
+    //运营商
+    NSArray *carriers = @[
+        @"China Mobile", @"China Unicom", @"China Telecom", @"CBN",
+        @"Chunghwa Telecom", @"Taiwan Mobile", @"Far EasTone", @"T Star",
+        @"SmarTone", @"csl.", @"3HK", @"China Mobile HK",
+        @"Verizon", @"AT&T", @"T-Mobile", @"Sprint",
+        @"NTT DOCOMO", @"KDDI au", @"SoftBank", @"Rakuten Mobile",
+        @"SK Telecom", @"KT", @"LG U+",
+        @"Vodafone UK", @"O2", @"EE", @"Three UK",
+        @"Carrier", @"Unknown", @"Wi-Fi Only", @"No SIM", @"Metronet"
+    ];
+    NSString *carrier = carriers[arc4random_uniform((uint32_t)carriers.count)];
+
+    //电量百分比
+    NSString *battery = [NSString stringWithFormat:@"%.2f", ((float)arc4random_uniform(100)) / 100.0];
+
+    //充电状态
+    // 0 = unknown, 1 = unplugged, 2 = charging, 3 = full
+    NSInteger batteryState = arc4random_uniform(4);
+
+    //屏幕亮度
+    NSString *brightness = [NSString stringWithFormat:@"%.2f", ((float)arc4random_uniform(101)) / 100.0];
+
     // 写入字段
     mutableDict[@"osv"] = randomOSV;
     mutableDict[@"revision"] = randomRevision;
     mutableDict[@"osversion"] = randomDarwinVersion;
     mutableDict[@"model"] = randomModel;
+    
+    mutableDict[@"locale"] = @"en_US";
+//    mutableDict[@"tz_offset"] = @"America/New_York";
+    mutableDict[@"lpm"] = @(lpm);
+    mutableDict[@"iPhone_name"] = @"iphone";
+    mutableDict[@"carrier"] = carrier;
+    mutableDict[@"battery"] = battery;
+    mutableDict[@"batteryState"] = @(batteryState);
+    mutableDict[@"brightness"] = brightness;
+    mutableDict[@"idfa"] = [[NSUUID UUID] UUIDString];
+    mutableDict[@"idfv"] = [[NSUUID UUID] UUIDString];
 
     NSLog(@"✅ 替换后 JSON: %@", mutableDict);
     return mutableDict;
 }
-
 
 /// 将JSON数据保存到文件
 - (void)saveJsonToFile:(NSDictionary *)jsonDict {
@@ -770,6 +750,24 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     }
 }
 
+/// 读取文件
+static NSDictionary *loadConfigJson(void) {
+    // 获取 Documents 目录路径
+    NSString *filePath = kFilePath;
+    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
+    if (!jsonData) {
+        NSLog(@"[HOOK] 无法读取配置文件: %@", filePath);
+        return nil;
+    }
+    
+    NSError *error = nil;
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    if (error || ![jsonDict isKindOfClass:[NSDictionary class]]) {
+        NSLog(@"[HOOK] 解析配置文件失败: %@", error ? error.localizedDescription : @"格式不正确");
+        return nil;
+    }
+    return jsonDict;
+}
 
 #pragma mark - action
 - (void)copyAction:(UIButton *)sender {
@@ -1136,12 +1134,12 @@ static NSString *const API_AUTH_KEY = @"3b63282f65fcb2530874ad2aa2e82074";
     if (!_responseTextView) {
         UITextView *textV = [[UITextView alloc] init];
         textV.translatesAutoresizingMaskIntoConstraints = NO;
-        textV.backgroundColor = [UIColor lightGrayColor];
+        textV.backgroundColor = UIColor.systemGroupedBackgroundColor;
         textV.textColor = [UIColor blackColor];
         textV.font = [UIFont systemFontOfSize:14];
         textV.editable = NO;
         textV.layer.cornerRadius = 8;
-        textV.text = @"请点击\"生成环境\"按钮获取数据...";
+        textV.text = @"手机环境数据";
         _responseTextView = textV;
     }
     return _responseTextView;
