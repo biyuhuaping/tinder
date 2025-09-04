@@ -265,7 +265,7 @@
 	<key>LineChannelIDProd</key>
 	<string>1657787365</string>
 	<key>MinimumOSVersion</key>
-	<string>10.0</string>
+	<string>16.0</string>
 	<key>NSAdvertisingAttributionReportEndpoint</key>
 	<string>https://appsflyer-skadnetwork.com/</string>
 	<key>NSAppTransportSecurity</key>
