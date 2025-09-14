@@ -368,6 +368,65 @@
 }
 %end
 
+
+%hook SecTrust
+// iOS 13 及以上：SecTrustEvaluateWithError
+- (BOOL)evaluateWithError:(NSError **)error {
+    NSLog(@"[HOOK] SecTrustEvaluateWithError 被调用，直接返回 YES");
+    return YES; // 永远验证通过
+}
+
+%end
+
+
+%hook UIApplication
+
+- (BOOL)openURL:(NSURL *)url {
+    NSLog(@"[hook] UIApplication openURL: %@", url);
+    // 修改 URL 示例
+    // NSURL *newURL = [NSURL URLWithString:@"myapp://hijacked"];
+    // return %orig(newURL);
+
+    // 拦截并阻止打开
+    // return NO;
+
+    // 继续原逻辑
+    return %orig(url);
+}
+//iOS10+
+- (void)openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey,id> *)options completionHandler:(void (^)(BOOL))completion {
+    NSLog(@"[hook] openURL:options: %@", url);
+    // 可以在这里修改 options 或 url
+    NSURL *modified = url;
+    // call original
+    %orig(modified, options, completion);
+}
+
+%end
+
+%hook AppDelegate // 或者你的具体 AppDelegate 类名
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    NSLog(@"[hook] AppDelegate openURL: %@", url);
+    // 拦截
+    // return NO;
+    return %orig(application, url, options);
+}
+
+%end
+
+%hook SceneDelegate // 或者具体类名，如 "UIWindowSceneDelegate" 的实现类
+
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    for (UIOpenURLContext *ctx in URLContexts) {
+        NSLog(@"[hook] Scene openURLContexts: %@", ctx.URL);
+        // 修改或忽略
+    }
+    %orig(scene, URLContexts);
+}
+
+%end
+
 #pragma mark - Auth.RefreshTokenInteractor
 /*
 %hook ARefreshTokenInteractor
